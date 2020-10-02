@@ -12,8 +12,7 @@ public class PlayerController implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        System.out.println("Keycode =" + e.getKeyCode() + ", character =" + e.getKeyChar());
     }
 
     @Override
@@ -22,4 +21,8 @@ public class PlayerController implements KeyListener {
 
     }
 
+    public static void main(String[] args) {
+        PlayerController test = new PlayerController();
+
+    }
 }
