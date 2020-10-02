@@ -2,46 +2,28 @@ package input;
 
 import java.awt.event.*;
 
-public class PlayerController implements KeyListener, Runnable {
+import entity.PlayerActor;
 
-    private boolean running = false;
-    private boolean exit = false;
+public class PlayerController implements KeyListener {
+
+    PlayerActor actor;
+
+    public PlayerController(PlayerActor c_actor) {
+        this.actor = c_actor;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        actor.keyTyped(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Keycode =" + e.getKeyCode() + ", character =" + e.getKeyChar());
+        actor.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void run() {
-        running = true;
-
-        if (this.keyPressed())
-
-
-    }
-
-    public boolean isRunning() {
-        return running;
-    }
-
-    public boolean shouldExit() {
-        return exit;
-    }
-
-    public static void main(String[] args) {
-
+        actor.keyReleased(e);
     }
 }
