@@ -1,0 +1,7 @@
+Add all data in folders here.
+
+Make folders per datatype so:
+- Images
+- Sprites 
+- Audio
+- Etc.
