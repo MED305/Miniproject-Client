@@ -1,19 +1,20 @@
 package graphics;
-                                                                //Kilde: The Zero Doctor
+//Kilde: The Zero Doctor
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Sprite {                                             //This class will load sprites for the game
+public class Sprite { // This class will load sprites for the game
 
-    public final BufferedImage SPRITESHEET = null;                //Create our components
+    public final BufferedImage SPRITESHEET = null; // Create our components
     private BufferedImage[][] spriteArray;
     private final int TILE_SIZE = 32;
     public int w;
     public int h;
-    private int wSprite;                                          //Value for total number of sprites in sprite sheet (if timed together) wSprite = columns, hSprite = rows
+    private int wSprite; // Value for total number of sprites in sprite sheet (if timed together) wSprite
+                         // = columns, hSprite = rows
     private int hSprite;
 
     public Sprite(String file) {
@@ -45,7 +46,7 @@ public class Sprite {                                             //This class w
         setHeight(height);
     }
 
-    public void setWidth(int i) {                                  //Might not get used
+    public void setWidth(int i) { // Might not get used
         w = i;
         wSprite = SPRITESHEET.getWidth() / w;
     }
@@ -55,7 +56,7 @@ public class Sprite {                                             //This class w
         hSprite = SPRITESHEET.getHeight() / h;
     }
 
-    public int getWidth() {                                        //Create our getters
+    public int getWidth() { // Create our getters
         return w;
     }
 
@@ -63,9 +64,9 @@ public class Sprite {                                             //This class w
         return h;
     }
 
-    private BufferedImage loadSprite(String file) {               //Here we create the loadsprite method
+    private BufferedImage loadSprite(String file) { // Here we create the loadsprite method
         BufferedImage sprite = null;
-        try {                                                     //Create try catch so we get an error message if something doesnt load properly
+        try { // Create try catch so we get an error message if something doesnt load properly
             sprite = ImageIO.read(getClass().getClassLoader().getResourceAsStream(file));
         } catch (Exception e) {
             System.out.println("Error: Could not load file: " + file);
@@ -74,18 +75,17 @@ public class Sprite {                                             //This class w
         return sprite;
     }
 
-
     public void loadSpriteArray() {
         spriteArray = new BufferedImage[wSprite][hSprite];
 
-        for(int x = 0; x < wSprite; x++){                           //Create a nested for loop to load the sprite array
-            for (int y = 0; y < hSprite; y++){
+        for (int x = 0; x < wSprite; x++) { // Create a nested for loop to load the sprite array
+            for (int y = 0; y < hSprite; y++) {
                 spriteArray[x][y] = getSprite(x, y);
             }
         }
     }
 
-    public  BufferedImage getSPRITESHEET() {
+    public BufferedImage getSPRITESHEET() {
         return SPRITESHEET;
     }
 
@@ -93,13 +93,15 @@ public class Sprite {                                             //This class w
         return SPRITESHEET.getSubimage(x * w, y * h, w, h);
     }
 
-    public BufferedImage[] getSpriteArray(int i) {                  //returns buffered image array ( mainly for animations )
+    public BufferedImage[] getSpriteArray(int i) { // returns buffered image array ( mainly for animations )
         return spriteArray[i];
     }
+
     public BufferedImage[][] getSpriteArray2(int i) {
         return spriteArray;
     }
-                                                                    //This will be used for lives ( heart images )
+
+    // This will be used for lives ( heart images )
     public static void drawArray(Graphics2D g, ArrayList<BufferedImage> img, Vector2f pos, int width, int height, int xOffset, int yOffset){
     float x = pos.x;
     float y = pos.y;
