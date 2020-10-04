@@ -2,6 +2,9 @@ package graphics;
 //Kilde: The Zero Doctor
 
 import javax.imageio.ImageIO;
+
+import math.Vector2f;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
