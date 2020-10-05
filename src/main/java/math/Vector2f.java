@@ -37,16 +37,23 @@ public class Vector2f {
     }
 
     public Vector2f add(Vector2f other) {
-        float newX = this.x += other.x;
-        float newY = this.y += other.y;
+        float newX = this.x + other.x;
+        float newY = this.y + other.y;
 
         return new Vector2f(newX, newY);
     }
 
     public Vector2f subtract(Vector2f other) {
-        float newX = this.x -= other.x;
-        float newY = this.y -= other.y;
+        float newX = this.x - other.x;
+        float newY = this.y - other.y;
 
         return new Vector2f(newX, newY);
+    }
+
+    public double dotProduct(Vector2f other) {
+        float newX = this.x * other.x;
+        float newY = this.y * other.y;
+
+        return newX + newY;
     }
 }
