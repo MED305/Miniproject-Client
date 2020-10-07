@@ -2,6 +2,9 @@ package graphics;
 //Kilde: The Zero Doctor
 
 import javax.imageio.ImageIO;
+
+import math.Vector2f;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -102,16 +105,19 @@ public class Sprite { // This class will load sprites for the game
     }
 
     // This will be used for lives ( heart images )
-    public static void drawArray(Graphics2D g, ArrayList<BufferedImage> img, Vector2f pos, int width, int height, int xOffset, int yOffset){
-    float x = pos.x;    
+    public static void drawArray(Graphics2D g, ArrayList<BufferedImage> img, Vector2f pos, int width, int height,
+            int xOffset, int yOffset) {
+        float x = pos.x;
+        float y = pos.y;
 
-    for (int i = 0; i < img.size(); i++) {
-     
-
-     null);
+        for (int i = 0; i < img.size(); i++) {
+            if (img.get(i) != null) { // When you cast with (int), you discard any fraction number after floating
+                                      // points or other data types.
+                g.drawImage(img.get(i), (int) x, (int) y, width, height, null);
+            }
+            x += xOffset;
+            y += yOffset;
         }
-        x += xOffset;
-        y += yOffset;
     }
 
     // This is used for fonts and stuff like that
