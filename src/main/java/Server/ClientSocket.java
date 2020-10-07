@@ -21,9 +21,19 @@ public class ClientSocket {
      */
 
     public ClientSocket(String host){
-
-
+        String[] parts = host.split(":");
+        if (parts.length) !=2 {
+            errorCode = Error.INVALID_HOST;
+            return;
+        }
+        ipAddress = parts[0];
+        try {
+        port = Integer.parseInt(parts[1]);
+        } catch (NumberFormatException)
+        errorCode = Error.INVALID_HOST;
+        return;
     }
+
     /**
      * the format should be:
      * @param host
@@ -45,14 +55,22 @@ public class ClientSocket {
             return false;
         }
         try {
-            socket = new DatagramSocket(port);
+            socket = new DatagramSocket();
         } catch (SocketException e) {
             e.printStackTrace();
             errorCode = Error.SOCKET_EXCEPTION;
             return false;
         }
-
+        sendConnectionPacket();
+        //wait for server to reply
+        return true
     }
+
+    private void sendConnectionPacket{
+        byte[] data = //what should be sent needs to be here.
+        send(data);
+    }
+
     public void send(byte[] data){
         assert(socket.isConnected());
         DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, port);
