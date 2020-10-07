@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Sprite { // This class will load sprites for the game
 
-    public final BufferedImage SPRITESHEET = null; // Create our components
+    public final BufferedImage SPRITESHEET; // Create our components
     private BufferedImage[][] spriteArray;
     private final int TILE_SIZE = 32;
     public int w;
@@ -105,28 +105,32 @@ public class Sprite { // This class will load sprites for the game
     }
 
     // This will be used for lives ( heart images )
-    public static void drawArray(Graphics2D g, ArrayList<BufferedImage> img, Vector2f pos, int width, int height, int xOffset, int yOffset){
-    float x = pos.x;
-    float y = pos.y;
+    public static void drawArray(Graphics2D g, ArrayList<BufferedImage> img, Vector2f pos, int width, int height,
+            int xOffset, int yOffset) {
+        float x = pos.x;
+        float y = pos.y;
 
-    for (int i = 0; i < img.size(); i++) {
-        if(img.get(i) != null) {                                   //When you cast with (int), you discard any fraction number after floating points or other data types.
-            g.drawImage(img.get(i), (int) x, (int) y, width, height, null);
+        for (int i = 0; i < img.size(); i++) {
+            if (img.get(i) != null) { // When you cast with (int), you discard any fraction number after floating
+                                      // points or other data types.
+                g.drawImage(img.get(i), (int) x, (int) y, width, height, null);
+            }
+            x += xOffset;
+            y += yOffset;
+        }
+    }
+
+    // This is used for fonts and stuff like that
+    public static void drawArray(Graphics2D g, Font f, String word, Vector2f pos, int width, int height, int xOffset,
+            int yOffset) {
+        float x = pos.x;
+        float y = pos.y;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) != 32)
+                g.draw(f.getFont(word.charAt(i)), (int) x, (int) y, width, height, null);
         }
         x += xOffset;
         y += yOffset;
-    }
-                                                                    //This is used for fonts and stuff like that
-    public static void drawArray(Graphics2D g, Font f, String word, Vector2f pos, int width, int height, int xOffset, int yOffset){
-    float x = pos.x;
-    float y = pos.y;
-
-    for ( int i = 0; i < word.length(); i++) {
-        if(word.charAt(i) != 32)
-            g.draw(f.getFont(word.charAt(i)), (int) x, (int) y, width, height, null);
-    }
-        x += xOffset;
-        y += yOffset;
-    }
     }
 }
