@@ -18,5 +18,6 @@ public abstract class Actor {
 
     public Actor() {
         position = new Vector2f(30, 30);
+        sprite = new Sprite("C:/Users/Hector/Desktop/Code/Java/Miniproject Client/data/sprites/DudeGuy.png");
     }
 }
