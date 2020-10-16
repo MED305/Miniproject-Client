@@ -73,7 +73,7 @@ public class ClientSocket {
                 send(data);
     }
 
-    public void send(int){
+    public void send(byte[] data){
         assert(socket.isConnected());
         DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, port);
         try{
