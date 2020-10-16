@@ -1,10 +1,9 @@
-package main.java.states;
+package states;
 
-import main.java.graphics.Sprite;
-import main.java.input.KeyHandler;
-import main.java.input.MouseHandler;
-import main.java.input.Vector2f;
-import java.awt.Graphics2D;
+import graphics.Sprite;
+import input.KeyHandler;
+import input.MouseHandler;
+import math.Vector2f;
 
 import java.awt.*;
 
@@ -25,6 +24,6 @@ public class PlayState extends GameState {
     }
 
     public void render(Graphics2D g){
-        Sprite.drawArray(g, font, "HELLO WORLD", new Vector2f( 100,100);
+        Sprite.drawArray(g, font, "HELLO WORLD", new Vector2f( 100,100), 32, 32, 16, 16;
     }
 }

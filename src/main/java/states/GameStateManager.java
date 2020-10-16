@@ -1,8 +1,8 @@
-package main.java.states;
-import main.java.input.KeyHandler;
-import main.java.input.MouseHandler;
-import main.java.input.Vector2f;
-import main.java.graphics.GamePanel;
+package states;
+import input.KeyHandler;
+import input.MouseHandler;
+import math.Vector2f;
+import graphics.GamePanel;
 
 import java.awt.Graphics2D;
 import java.awt.*;

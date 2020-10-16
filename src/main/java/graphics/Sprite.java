@@ -1,8 +1,8 @@
-package main.java.graphics;
+package graphics;
 //Kilde: The Zero Doctor
 
 import javax.imageio.ImageIO;
-import main.java.input.Vector2f;
+import math.Vector2f;
 
 
 import java.awt.*;
