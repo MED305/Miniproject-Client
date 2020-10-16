@@ -3,6 +3,7 @@ package graphics;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import states.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -13,6 +14,9 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean running = false;
     private BufferedImage img;
     private Graphics2D g;
+
+    GameStateManager gsm;
+    PlayState game;
 
     public GamePanel(int width, int height) {
         GamePanel.width = width;
@@ -36,6 +40,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         g = (Graphics2D) img.getGraphics();
+
+        gsm = new GameStateManager();
+        game = new PlayState(gsm);
     }
 
     public void run() {
@@ -102,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int x = 0;
 
     public void update() {
+        game.update();
         x++;
         // System.out.println(x + "test 2");
     }
