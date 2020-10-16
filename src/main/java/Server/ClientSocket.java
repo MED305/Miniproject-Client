@@ -1,12 +1,14 @@
 package Server;
+
 import javax.imageio.IIOException;
 import java.io.IOException;
 import java.net.*;
 
 public class ClientSocket {
-    public  enum Error {
+    public enum Error {
         NONE, INVALID_HOST, SOCKET_EXCEPTION
     }
+
     private int port;
     private String ipAddress;
     private InetAddress serverAddress;
@@ -36,12 +38,11 @@ public class ClientSocket {
 
     /**
      * the format should be:
-     * @param host
-     *              eg. 192.168.1.1
-     * @param port
-     *              eg. 5000
+     * 
+     * @param host eg. 192.168.1.1
+     * @param port eg. 5000
      */
-    public ClientSocket(String  host, int port){
+    public ClientSocket(String host, int port) {
         this.ipAddress = host;
         this.port = port;
     }
@@ -66,9 +67,10 @@ public class ClientSocket {
         return true
     }
 
-    private void sendConnectionPacket{
-        byte[] data = //what should be sent needs to be here.
-        send(data);
+    private void sendConnectionPacket
+    {
+        byte[] data = // what should be sent needs to be here.
+                send(data);
     }
 
     public void send(int){
@@ -81,6 +83,7 @@ public class ClientSocket {
         }
 
     }
+
     public Error getErrorCode() {
         return errorCode;
     }
