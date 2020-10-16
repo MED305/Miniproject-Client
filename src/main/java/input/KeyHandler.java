@@ -1,4 +1,4 @@
-package main.java.input;
+package input;
 
 public class KeyHandler {
 }
