@@ -96,9 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
                 now = System.nanoTime();
             }
-
         }
-
     }
 
     private int x = 0;
@@ -117,14 +115,11 @@ public class GamePanel extends JPanel implements Runnable {
             g.setColor(new Color(120, 255, 5));
             g.fillRect(0, 0, width, height);
         }
-
     }
 
     public void draw() {
         Graphics g2 = (Graphics) this.getGraphics();
         g2.drawImage(img, 0, 0, width, height, null);
         g2.dispose();
-
     }
-
 }
