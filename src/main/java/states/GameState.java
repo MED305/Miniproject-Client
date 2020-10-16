@@ -1,5 +1,8 @@
 package main.java.states;
 
+import main.java.input.KeyHandler;
+import main.java.input.MouseHandler;
+
 import java.awt.*;
 
 public abstract class GameState {
@@ -10,6 +13,6 @@ public abstract class GameState {
         this.gsm = gsm;
     }
     public abstract void update();
-    public abstract void input();
+    public abstract void input(MouseHandler mouse, KeyHandler key);
     public abstract void render(Graphics2D g);
 }

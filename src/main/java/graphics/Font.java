@@ -28,7 +28,7 @@ public class Font { // This class will load sprites for the game
 
     public Font(String file, int w, int h) {
         this.w = w;
-        this.w = w;
+        this.h = h;
 
         System.out.println("Loading: " + file + "...");
         FONTSHEET = loadFont(file);
