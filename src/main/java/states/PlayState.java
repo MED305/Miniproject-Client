@@ -8,8 +8,11 @@ import math.Vector2f;
 
 import java.awt.*;
 
+import entity.PlayerActor;
+
 public class PlayState extends GameState {
     private Font font;
+    PlayerActor player;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);

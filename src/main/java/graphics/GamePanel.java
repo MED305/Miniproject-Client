@@ -1,6 +1,10 @@
 package graphics;
 
 import javax.swing.JPanel;
+
+import input.KeyHandler;
+import input.MouseHandler;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import states.*;
@@ -14,6 +18,9 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean running = false;
     private BufferedImage img;
     private Graphics2D g;
+
+    KeyHandler key;
+    MouseHandler mouse;
 
     GameStateManager gsm;
     PlayState game;
@@ -109,19 +116,20 @@ public class GamePanel extends JPanel implements Runnable {
     private int x = 0;
 
     public void update() {
-        game.update();
+        gsm.update();
         x++;
         // System.out.println(x + "test 2");
     }
 
     public void input() {
-
+        gsm.input(mouse, key);
     }
 
     public void render() {
         if (g != null) { // If no picture is rendered / background
             g.setColor(new Color(120, 255, 5));
             g.fillRect(0, 0, width, height);
+            gsm.render(g);
         }
     }
 
