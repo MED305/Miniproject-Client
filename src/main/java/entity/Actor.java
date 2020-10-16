@@ -1,23 +1,23 @@
 package entity;
 
+import graphics.Sprite;
+import math.Vector2f;
+
 public abstract class Actor {
     private final int UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3;
 
     protected int currentAnimation;
 
-    protected Animation actorAnimation;
-    protected Sprite actorSprite;
-    protected Vector2f actorPosition;
-
     protected boolean movingUp, movingDown, movingLeft, movingRight, isAttacking;
     protected int attackSpeed;
 
-    protected float directionX, directionY;
+    protected Vector2f position, direction;
+    protected Sprite sprite;
 
     protected float maxSpeed, acceleration, deacceleration;
 
-    public Actor(Sprite sprite, Vector2f origin) {
-        this.actorSprite = sprite;
-        this.actorPosition = origin;
+    public Actor() {
+        position = new Vector2f(30, 30);
+        sprite = new Sprite("C:/Users/Hector/Desktop/Code/Java/Miniproject Client/data/sprites/DudeGuy.png");
     }
 }
