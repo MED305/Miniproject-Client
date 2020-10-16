@@ -1,6 +1,5 @@
 package main.java.input;
 
-import java.security.PublicKey;
 
 public class Vector2f {
 
