@@ -1,5 +1,6 @@
 package main;
 
+import Server.ClientSocket;
 import graphics.GameLauncher;
 
 public class Main {
