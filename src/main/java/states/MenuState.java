@@ -1,7 +1,7 @@
-package main.java.states;
+package states;
 
-import main.java.input.KeyHandler;
-import main.java.input.MouseHandler;
+import input.KeyHandler;
+import input.MouseHandler;
 
 import java.awt.*;
 
