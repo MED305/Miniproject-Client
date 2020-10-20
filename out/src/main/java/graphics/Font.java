@@ -6,12 +6,13 @@ import java.awt.image.BufferedImage;
 
 public class Font { // This class will load sprites for the game
 
-    public  BufferedImage FONTSHEET = null; // Create our components
+    public BufferedImage FONTSHEET; // Create our components
     private BufferedImage[][] spriteArray;
     private final int TILE_SIZE = 32;
     public int w;
     public int h;
-    private int wLetter; // Value for total number of sprites in sprite sheet (if timed together) wSprite = columns, hSprite = rows
+    private int wLetter; // Value for total number of sprites in sprite sheet (if timed together) wSprite
+                         // = columns, hSprite = rows
     private int hLetter;
 
     public Font(String file) {
@@ -56,6 +57,7 @@ public class Font { // This class will load sprites for the game
     public int getWidth() { // Create our getters
         return w;
     }
+
     public int getHeight() {
         return h;
     }
@@ -89,12 +91,12 @@ public class Font { // This class will load sprites for the game
         return FONTSHEET.getSubimage(x * w, y * h, w, h);
     }
 
-    public BufferedImage getFont(char letter){
-    int value =  letter - 65;  // this combats ascii table bc of the font selected
+    public BufferedImage getFont(char letter) {
+        int value = letter - 65; // this combats ascii table bc of the font selected
 
-    int x = value % wLetter;
-    int y = value / wLetter;
+        int x = value % wLetter;
+        int y = value / wLetter;
 
-    return FONTSHEET.getSubimage(x,y,w,h);
+        return FONTSHEET.getSubimage(x, y, w, h);
     }
 }

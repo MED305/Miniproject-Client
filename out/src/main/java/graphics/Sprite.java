@@ -4,14 +4,13 @@ package graphics;
 import javax.imageio.ImageIO;
 import math.Vector2f;
 
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Sprite { // This class will load sprites for the game
 
-    public  BufferedImage SPRITESHEET = null; // Create our components
+    public BufferedImage SPRITESHEET = null; // Create our components
     private BufferedImage[][] spriteArray;
     private final int TILE_SIZE = 32;
     public int w;
@@ -128,7 +127,7 @@ public class Sprite { // This class will load sprites for the game
 
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) != 32)
-                g.draw(f.getFont(word.charAt(i)), (int) x, (int) y, width, height, null);
+                g.drawImage(f.getFont(word.charAt(i)), (int) x, (int) y, width, height, null);
 
             x += xOffset;
             y += yOffset;
