@@ -1,19 +1,82 @@
 
 texture_atlas.png
-size: 512,512
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 1, 18
+  xy: 362, 219
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-player/DudeGuy
+bullet
+  rotate: false
+  xy: 1, 25
+  size: 360, 450
+  orig: 360, 450
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet1
+  rotate: false
+  xy: 362, 212
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet2
+  rotate: false
+  xy: 619, 469
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet3
   rotate: false
   xy: 1, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet4
+  rotate: false
+  xy: 18, 18
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet5
+  rotate: false
+  xy: 362, 205
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet6
+  rotate: false
+  xy: 369, 212
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet7
+  rotate: false
+  xy: 619, 462
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet8
+  rotate: false
+  xy: 626, 469
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/DudeGuy
+  rotate: false
+  xy: 1, 8
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
