@@ -19,4 +19,16 @@ public class PlayerActor extends Entity {
     public void update() {
         batch.draw(sprite, xPosition, yPosition);
     }
+
+    @Override
+    public int getxPosition() { //returning players positions
+        return super.getxPosition();
+
+    }
+
+    @Override
+    public int getyPosition() { //returning players positions
+        return super.getyPosition();
+    }
+
 }

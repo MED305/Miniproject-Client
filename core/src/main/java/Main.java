@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.Bullet;
 import main.java.entity.Entity;
+import main.java.entity.PickUp;
 import main.java.entity.PlayerActor;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Main extends ApplicationAdapter {
 	TextureAtlas atlas;
 	public ArrayList<Entity> entities;
 	PlayerActor player;
+	PickUp pickup;
 	ArrayList<Bullet> bullets;
 	float x;
 	float y;
@@ -28,6 +30,7 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		atlas = new TextureAtlas("texture_atlas.atlas");
 		entities.add(player = new PlayerActor( atlas.findRegion("player/DudeGuy"), batch, atlas));
+		entities.add(pickup = new PickUp( atlas.findRegion("pickup"), batch, atlas));
 		bullets = new ArrayList<Bullet>();
 
 	}
@@ -50,9 +53,9 @@ public class Main extends ApplicationAdapter {
 
 		batch.begin();
 
-		for (Bullet bullet : bullets){
+		/*for (Bullet bullet : bullets){
 			bullet.render(game.batch);
-		}
+		} */
 
 		for (Entity entity : entities) {
 			entity.update();
