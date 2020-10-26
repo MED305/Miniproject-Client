@@ -7,7 +7,7 @@ public abstract class Entity {
     protected SpriteBatch batch;
     protected TextureAtlas atlas;
 
-    protected int xPosition, yPosition;
+    protected float xPosition, yPosition;
 
     protected float maxSpeed, acceleration, deacceleration;
 
@@ -16,21 +16,21 @@ public abstract class Entity {
         atlas = c_atlas;
     }
 
-    public abstract void update();
+    public abstract void update(float deltaTime);
 
-    public int getxPosition() {
+    public float getxPosition() {
         return xPosition;
     }
 
-    public void setxPosition(int xPosition) {
+    public void setxPosition(float xPosition) {
         this.xPosition = xPosition;
     }
 
-    public int getyPosition() {
+    public float getyPosition() {
         return yPosition;
     }
 
-    public void setyPosition(int yPosition) {
+    public void setyPosition(float yPosition) {
         this.yPosition = yPosition;
     }
 }

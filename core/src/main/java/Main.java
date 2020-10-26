@@ -2,92 +2,66 @@ package main.java;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.Bullet;
 import main.java.entity.Entity;
+import main.java.entity.PickUp;
 import main.java.entity.PlayerActor;
 
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	TextureAtlas atlas;
-	public ArrayList<Entity> entities;
-	PlayerActor player;
-	ArrayList<Bullet> bullets;
-	float x;
-	float y;
+    static public ArrayList<Entity> entities;
+    static public ArrayList<Bullet> bulletsToRemove;
 
+    SpriteBatch batch;
+    TextureAtlas atlas;
+    PlayerActor player;
+    PickUp pickup;
+    float x;
+    float y;
+    float deltaTime;
 
-	@Override
-	public void create() {
-		entities = new ArrayList<>();
-		batch = new SpriteBatch();
-		atlas = new TextureAtlas("texture_atlas.atlas");
-		entities.add(player = new PlayerActor( atlas.findRegion("player/DudeGuy"), batch, atlas));
-		bullets = new ArrayList<Bullet>();
+    @Override
+    public void create() {
+        entities = new ArrayList<>();
+        bulletsToRemove = new ArrayList<>();
+        batch = new SpriteBatch();
+        atlas = new TextureAtlas("texture_atlas.atlas");
+        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
+        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+    }
 
-	}
+    @Override
+    public void render() {
+        deltaTime = Gdx.graphics.getDeltaTime();
+        bulletsToRemove.clear();
 
-	@Override
-	public void render() {
+        Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		//update bullets
-		ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
-		for (Bullet bullet : bullets) {
-			//bullet.update(delta);
-			if (bullet.remove){
-				bulletsToRemove.add(bullet);
-			}
-		}
-		bullets.removeAll(bulletsToRemove);
+        batch.begin();
 
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        for (Entity entity : entities) {
+            entity.update(deltaTime);
+        }
 
-		batch.begin();
+        for (Bullet bullet : bulletsToRemove) {
+            bullet.remove();
+        }
 
-		for (Bullet bullet : bullets){
-			bullet.render(game.batch);
-		}
+        player.detectInput(deltaTime);
 
-		for (Entity entity : entities) {
-			entity.update();
-		}
+        System.out.println(bulletsToRemove.size());
 
-		detectInput();
-		batch.end();
-	}
+        batch.end();
+    }
 
-	@Override
-	public void dispose() {
-		batch.dispose();
-		atlas.dispose();
-	}
-
-	private void detectInput() {
-		//Shooting code
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-			bullets.add(new Bullet(x + 2,y - 2));
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-			player.setyPosition(player.getyPosition() + 1);
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			player.setxPosition(player.getxPosition() - 1);
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-			player.setyPosition(player.getyPosition() - 1);
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-			player.setxPosition(player.getxPosition() + 1);
-		}
-	}
+    @Override
+    public void dispose() {
+        batch.dispose();
+        atlas.dispose();
+    }
 }
