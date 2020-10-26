@@ -6,14 +6,70 @@ filter: Nearest,Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 1, 18
+  xy: 1, 32
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-player/DudeGuy
+player/Bullet/Bullet1
+  rotate: false
+  xy: 258, 282
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet2
+  rotate: false
+  xy: 1, 8
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet3
+  rotate: false
+  xy: 18, 25
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet4
+  rotate: false
+  xy: 258, 275
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet5
+  rotate: false
+  xy: 265, 282
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet6
   rotate: false
   xy: 1, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet7
+  rotate: false
+  xy: 8, 8
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/Bullet/Bullet8
+  rotate: false
+  xy: 18, 18
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+player/DudeGuy
+  rotate: false
+  xy: 1, 15
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
