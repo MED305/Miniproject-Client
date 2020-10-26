@@ -1,19 +1,33 @@
 
 texture_atlas.png
-size: 512,512
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 1, 32
+  xy: 362, 226
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
+bullet
+  rotate: false
+  xy: 1, 32
+  size: 360, 450
+  orig: 360, 450
+  offset: 0, 0
+  index: -1
+pickup
+  rotate: false
+  xy: 362, 209
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 player/Bullet/Bullet1
   rotate: false
-  xy: 258, 282
+  xy: 619, 476
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -34,35 +48,35 @@ player/Bullet/Bullet3
   index: -1
 player/Bullet/Bullet4
   rotate: false
-  xy: 258, 275
+  xy: 362, 202
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet5
   rotate: false
-  xy: 265, 282
+  xy: 379, 219
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet6
   rotate: false
-  xy: 1, 1
+  xy: 619, 469
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet7
   rotate: false
-  xy: 8, 8
+  xy: 626, 476
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet8
   rotate: false
-  xy: 18, 18
+  xy: 1, 1
   size: 6, 6
   orig: 6, 6
   offset: 0, 0

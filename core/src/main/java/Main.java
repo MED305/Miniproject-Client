@@ -13,53 +13,55 @@ import main.java.entity.PlayerActor;
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	TextureAtlas atlas;
-	public ArrayList<Entity> entities;
-	PlayerActor player;
-	PickUp pickup;
-	ArrayList<Bullet> bullets;
-	float x;
-	float y;
+    static public ArrayList<Entity> entities;
+    static public ArrayList<Bullet> bulletsToRemove;
 
-	@Override
-	public void create() {
-		entities = new ArrayList<>();
-		batch = new SpriteBatch();
-		atlas = new TextureAtlas("texture_atlas.atlas");
-		entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-		entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
-		bullets = new ArrayList<Bullet>();
-	}
+    SpriteBatch batch;
+    TextureAtlas atlas;
+    PlayerActor player;
+    PickUp pickup;
+    float x;
+    float y;
+    float deltaTime;
 
-	@Override
-	public void render() {
+    @Override
+    public void create() {
+        entities = new ArrayList<>();
+        bulletsToRemove = new ArrayList<>();
+        batch = new SpriteBatch();
+        atlas = new TextureAtlas("texture_atlas.atlas");
+        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
+        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+    }
 
-		ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
-		for (Bullet bullet : bullets) {
-			// bullet.update(delta);
-			if (bullet.remove) {
-				bulletsToRemove.add(bullet);
-			}
-		}
+    @Override
+    public void render() {
+        deltaTime = Gdx.graphics.getDeltaTime();
+        bulletsToRemove.clear();
 
-		bullets.removeAll(bulletsToRemove);
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		batch.begin();
+        batch.begin();
 
-		for (Entity entity : entities) {
-			entity.update();
-		}
+        for (Entity entity : entities) {
+            entity.update(deltaTime);
+        }
 
-		player.detectInput();
-		batch.end();
-	}
+        for (Bullet bullet : bulletsToRemove) {
+            bullet.remove();
+        }
 
-	@Override
-	public void dispose() {
-		batch.dispose();
-		atlas.dispose();
-	}
+        player.detectInput(deltaTime);
+
+        System.out.println(bulletsToRemove.size());
+
+        batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        atlas.dispose();
+    }
 }
