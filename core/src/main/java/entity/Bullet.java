@@ -10,7 +10,7 @@ public class Bullet extends Entity {
 
     public static final int SPEED = 400;
     private static TextureAtlas.AtlasRegion texture;
-    private PlayerActor player;
+    private final PlayerActor player;
 
     float x, y;
 

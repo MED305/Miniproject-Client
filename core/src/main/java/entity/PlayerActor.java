@@ -4,19 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
 import main.java.Main;
-
 
 public class PlayerActor extends Entity {
 
-    TextureAtlas.AtlasRegion sprite = atlas.findRegion("player/DudeGuy");
-
+    TextureAtlas.AtlasRegion sprite;
 
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
         xPosition = 100;
         yPosition = 100;
+        size = new Rectangle(xPosition, yPosition, 10, 10);
     }
 
     @Override

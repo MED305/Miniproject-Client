@@ -12,7 +12,7 @@ public class DesktopLauncher {
 		config.title = "Game Window";
 		config.resizable = true;
 
-		//Pack all textures
+		// Pack all textures
 		// TODO: REMOVE THIS BEFORE RELEASE
 		TexturePacker.Settings sets = new TexturePacker.Settings();
 		sets.pot = true;

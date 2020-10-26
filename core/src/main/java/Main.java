@@ -5,10 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import main.java.entity.Bullet;
-import main.java.entity.Entity;
-import main.java.entity.PickUp;
-import main.java.entity.PlayerActor;
+import main.java.entity.*;
 
 import java.util.ArrayList;
 
@@ -20,8 +17,8 @@ public class Main extends ApplicationAdapter {
     TextureAtlas atlas;
     PlayerActor player;
     PickUp pickup;
-    float x;
-    float y;
+    Enemy enemy;
+
     float deltaTime;
 
     @Override
@@ -30,7 +27,9 @@ public class Main extends ApplicationAdapter {
         bulletsToRemove = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
+
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
     }
 
