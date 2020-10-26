@@ -7,7 +7,6 @@ public class Enemy extends Entity {
     TextureAtlas.AtlasRegion sprite;
     PlayerActor target;
 
-
     public Enemy(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_target) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
