@@ -36,7 +36,7 @@ public class Bullet extends Entity {
 
 
     public void update(float deltaTime) {
-        batch.draw(texture, x, y);
+        batch.draw(texture, position.x, position.y);
         this.movement.scl(deltaTime);
         this.position.add(movement);
 
