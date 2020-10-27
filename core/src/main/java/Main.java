@@ -18,39 +18,7 @@ import java.util.Scanner;
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	//public static Socket socket;
-	//@Override
 
-	/*public static void Main() {
-
-		Scanner input = new Scanner(System.in);
-		boolean connect = true;
-
-			try {
-				// Create a socket to connect to the server
-				//Socket connectToServer = new Socket("localhost", 8000);
-				socket = new Socket("192.168.1.11", 6969);
-
-
-				// Create an input stream to receive data from the server
-				DataInputStream isFromServer = new DataInputStream(socket.getInputStream());
-
-				// Create an output stream to send data to the server
-				DataOutputStream osToServer = new DataOutputStream(socket.getOutputStream());
-
-				if (connect = true) {
-					System.out.println("you are connected");
-				}
-				while (connect) {
-					System.out.print("Enter annual interest rate, for example, 8,25: ");
-					double annualInterestRate = input.nextDouble();
-				}
-			} catch (IOException ex) {
-				System.out.println(ex.toString() + '\n');
-			}
-
-
-		}*/
 		public void create () {
 
 		batch = new SpriteBatch();
