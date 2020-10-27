@@ -20,7 +20,7 @@ public class DesktopLauncher {
 		try {
 			// Create a socket to connect to the server
 			//Socket connectToServer = new Socket("localhost", 6969);
-			Socket connectToServer = new Socket("192.168.1.11", 6969);
+			Socket connectToServer = new Socket("192.168.43.26", 7000);
 
 
 			// Create an input stream to receive data from the server
