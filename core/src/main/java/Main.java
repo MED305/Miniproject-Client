@@ -46,10 +46,9 @@ public class Main extends ApplicationAdapter {
 
         batch.begin();
 
-        collisionDrawer.rectangle(player.getCollisionBox());
-
         for (Entity entity : entities) {
             entity.update(deltaTime);
+            collisionDrawer.rectangle(entity.getCollisionBox());
         }
 
         for (Bullet bullet : bulletsToRemove) {
@@ -61,6 +60,11 @@ public class Main extends ApplicationAdapter {
         System.out.println(bulletsToRemove.size());
 
         batch.end();
+
+        if (player.getCollisionBox().overlaps(enemy.getCollisionBox())) {
+            System.out.println("You Died!!");
+            System.exit(0);
+        }
     }
 
     @Override

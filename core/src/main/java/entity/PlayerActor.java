@@ -22,8 +22,7 @@ public class PlayerActor extends Entity {
     @Override
     public void update(float deltaTime) {
         batch.draw(sprite, position.x, position.y);
-        this.collisionBox.set(this.xPosition, this.yPosition, this.collisionBox.width, this.collisionBox.height);
-        System.out.println(this.position.toString());
+        this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
     }
 
     private void shoot() {
