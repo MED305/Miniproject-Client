@@ -31,4 +31,11 @@ public class Enemy extends Entity {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
     }
+
+    public void kill(float deltaTime) {
+        this.sprite = null;
+        this.collisionBox = null;
+        this.target = null;
+        System.out.println("Hit");
+    }
 }

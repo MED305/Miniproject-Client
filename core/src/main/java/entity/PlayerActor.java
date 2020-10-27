@@ -25,8 +25,8 @@ public class PlayerActor extends Entity {
         this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
     }
 
-    private void shoot() {
-        Main.entities.add(new Bullet(batch, atlas, this));
+    private void shoot(float deltaTime) {
+        Main.entities.add(new Bullet(batch, atlas, this, deltaTime));
     }
 
     private void move(Vector2 movement, float speed, float deltaTime) {
@@ -55,7 +55,7 @@ public class PlayerActor extends Entity {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            shoot();
+            shoot(deltaTime);
         }
 
         move(movement, speed, deltaTime);
