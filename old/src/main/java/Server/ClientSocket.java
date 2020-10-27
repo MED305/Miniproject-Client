@@ -10,7 +10,7 @@ public class ClientSocket {
     }
 
     private int port;
-    private String ipAddress;
+    private String ipAddress = "192.168.1.11";
     private InetAddress serverAddress;
     private Error errorCode = Error.NONE;
     private DatagramSocket socket;
@@ -22,18 +22,19 @@ public class ClientSocket {
      *              eg. 192.168.1.1:5000
      */
 
-    public ClientSocket(String host){
+    public ClientSocket(String host) {
         String[] parts = host.split(":");
-        if (parts.length) !=2 {
+        if (parts.length != 2) {
             errorCode = Error.INVALID_HOST;
             return;
         }
         ipAddress = parts[0];
         try {
-        port = Integer.parseInt(parts[1]);
-        } catch (NumberFormatException)
-        errorCode = Error.INVALID_HOST;
-        return;
+            port = Integer.parseInt(parts[1]);
+        } catch (NumberFormatException e) {
+            errorCode = Error.INVALID_HOST;
+            return;
+        }
     }
 
     /**
@@ -64,12 +65,12 @@ public class ClientSocket {
         }
         sendConnectionPacket();
         //wait for server to reply
-        return true
+        return true;
     }
 
-    private void sendConnectionPacket
-    {
-        byte[] data = // what should be sent needs to be here.
+    private void sendConnectionPacket() {
+        byte[] data = "connectionPacket".getBytes();
+
                 send(data);
     }
 
