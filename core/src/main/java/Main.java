@@ -3,42 +3,69 @@ package main.java;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-//import com.sun.security.ntlm.Client;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import main.java.entity.*;
+import space.earlygrey.shapedrawer.ShapeDrawer;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.Socket;
-import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+    static public ArrayList<Entity> entities;
+    static public ArrayList<Bullet> bulletsToRemove;
 
-		public void create () {
+    ShapeDrawer collisionDrawer;
+    SpriteBatch batch;
+    TextureAtlas atlas;
+    PlayerActor player;
+    PickUp pickup;
+    Enemy enemy;
 
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+    float deltaTime;
 
+    @Override
+    public void create() {
 
-	}
+        entities = new ArrayList<>();
+        bulletsToRemove = new ArrayList<>();
+        batch = new SpriteBatch();
+        atlas = new TextureAtlas("texture_atlas.atlas");
+        collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
+        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
+        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+    }
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+    @Override
+    public void render() {
+        deltaTime = Gdx.graphics.getDeltaTime();
+        bulletsToRemove.clear();
 
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+        Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+
+        collisionDrawer.rectangle(player.getCollisionBox());
+
+        for (Entity entity : entities) {
+            entity.update(deltaTime);
+        }
+
+        for (Bullet bullet : bulletsToRemove) {
+            bullet.remove();
+        }
+
+        player.detectInput(deltaTime);
+
+        System.out.println(bulletsToRemove.size());
+
+        batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        atlas.dispose();
+    }
 }
