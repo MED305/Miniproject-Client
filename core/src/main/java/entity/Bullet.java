@@ -18,8 +18,8 @@ public class Bullet extends Entity {
     public Bullet(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_player) {
         super(c_batch, c_atlas);
         player = c_player;
-        this.x = player.xPosition;
-        this.y = player.yPosition;
+        this.x = player.position.x;
+        this.y = player.position.y;
 
         if (texture == null) {
             texture = atlas.findRegion("player/Bullet/Bullet1");
