@@ -11,17 +11,19 @@ public class DesktopLauncher {
 
 		config.title = "Game Window";
 		config.resizable = true;
+		config.width = 800;
+		config.height = 800;
 
-		//Pack all textures
+		// Pack all textures
 		// TODO: REMOVE THIS BEFORE RELEASE
-		TexturePacker.Settings sets = new TexturePacker.Settings();
-		sets.pot = true;
-		sets.fast = true;
-		sets.combineSubdirectories = true;
-		sets.paddingX = 1;
-		sets.paddingY = 1;
-		sets.edgePadding = true;
-		TexturePacker.process(sets, "textures", "./", "texture_atlas");
+		TexturePacker.Settings settings = new TexturePacker.Settings();
+		settings.pot = true;
+		settings.fast = true;
+		settings.combineSubdirectories = true;
+		settings.paddingX = 1;
+		settings.paddingY = 1;
+		settings.edgePadding = true;
+		TexturePacker.process(settings, "textures", "./", "texture_atlas");
 
 		new LwjglApplication(new Main(), config);
 	}

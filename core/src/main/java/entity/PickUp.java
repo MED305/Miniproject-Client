@@ -16,15 +16,14 @@ public class PickUp extends Entity {
         truck = c_sprite;
     }
 
-
     @Override
     public void update(float deltaTime) {
-        batch.draw(truck, 200, 200); //drawing the pickup
+        batch.draw(truck, 200, 200); // drawing the pickup
 
-        if (xPosition == 200 && yPosition == 200) { //Checking if player is located on the pickup (not working)
-            pickup++; //Counter of pickups achieved
+        if (xPosition == 200 && yPosition == 200) { // Checking if player is located on the pickup (not working)
+            pickup++; // Counter of pickups achieved
 
-            Random r = new Random(); //For next position of pickup
+            Random r = new Random(); // For next position of pickup
             int low = 10;
             int high = 100;
             int x = r.nextInt(high - low) + low;

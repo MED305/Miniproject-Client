@@ -5,10 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import main.java.entity.Bullet;
-import main.java.entity.Entity;
-import main.java.entity.PickUp;
-import main.java.entity.PlayerActor;
+import main.java.entity.*;
+import space.earlygrey.shapedrawer.ShapeDrawer;
 
 import java.util.ArrayList;
 
@@ -16,21 +14,25 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
     static public ArrayList<Bullet> bulletsToRemove;
 
+    ShapeDrawer collisionDrawer;
     SpriteBatch batch;
     TextureAtlas atlas;
     PlayerActor player;
     PickUp pickup;
-    float x;
-    float y;
+    Enemy enemy;
+
     float deltaTime;
 
     @Override
     public void create() {
+
         entities = new ArrayList<>();
         bulletsToRemove = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
+        collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
     }
 
@@ -43,6 +45,8 @@ public class Main extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+
+        collisionDrawer.rectangle(player.getCollisionBox());
 
         for (Entity entity : entities) {
             entity.update(deltaTime);

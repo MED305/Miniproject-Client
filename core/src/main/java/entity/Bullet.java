@@ -1,7 +1,6 @@
 package main.java.entity;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.Main;
@@ -10,7 +9,7 @@ public class Bullet extends Entity {
 
     public static final int SPEED = 400;
     private static TextureAtlas.AtlasRegion texture;
-    private PlayerActor player;
+    private final PlayerActor player;
 
     float x, y;
 
@@ -19,8 +18,8 @@ public class Bullet extends Entity {
     public Bullet(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_player) {
         super(c_batch, c_atlas);
         player = c_player;
-        this.x = player.xPosition;
-        this.y = player.yPosition;
+        this.x = player.position.x;
+        this.y = player.position.y;
 
         if (texture == null) {
             texture = atlas.findRegion("player/Bullet/Bullet1");
