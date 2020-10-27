@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
+	public static void main(String[] arg) {
 
 		Scanner input = new Scanner(System.in);
 		boolean connect = true;
@@ -29,12 +29,11 @@ public class DesktopLauncher {
 
 			if (connect = true) {
 				System.out.println("you are connected");
-
-			}
-			else{
+			} else {
 				System.out.println("you are not connected");
 			}
-				while (connect) {
+
+			while (connect) {
 				// Enter annual interest rate
 				System.out.print("Enter number to be calculated by server: ");
 				double number = input.nextDouble();
@@ -42,7 +41,8 @@ public class DesktopLauncher {
 				// Sends the number stored to the server
 				osToServer.writeDouble(number);
 
-				// The number gets calculated in the server, and returns a number which then gets displayed
+				// The number gets calculated in the server, and returns a number which then
+				// gets displayed
 				double totalNumber = isFromServer.readDouble();
 
 				System.out.println("Calculated number: " + totalNumber);
@@ -51,7 +51,7 @@ public class DesktopLauncher {
 		} catch (IOException ex) {
 			System.out.println(ex.toString() + '\n');
 		}
-  
+
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = "Game Window";
