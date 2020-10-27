@@ -88,6 +88,13 @@ player/DudeGuy
   orig: 16, 16
   offset: 0, 0
   index: -1
+singleWhitePixel
+  rotate: false
+  xy: 34, 39
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
 zombie/zombie
   rotate: false
   xy: 1, 15

@@ -4,7 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
 import main.java.Main;
 
 public class PlayerActor extends Entity {
@@ -14,41 +15,50 @@ public class PlayerActor extends Entity {
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
-        xPosition = 100;
-        yPosition = 100;
-        size = new Rectangle(xPosition, yPosition, 10, 10);
+        this.position = new Vector2(100.0f, 100.0f);
+        this.setSize(20, 20);
     }
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(sprite, xPosition, yPosition);
+        batch.draw(sprite, position.x, position.y);
+        this.collisionBox.set(this.xPosition, this.yPosition, this.collisionBox.width, this.collisionBox.height);
+        System.out.println(this.position.toString());
     }
 
     private void shoot() {
         Main.entities.add(new Bullet(batch, atlas, this));
     }
 
+    private void move(Vector2 movement, float speed, float deltaTime) {
+        movement.nor().scl(speed).scl(deltaTime);
+        this.position.add(movement);
+    }
+
     public void detectInput(float deltaTime) {
         float speed = 100;
+        Vector2 movement = new Vector2();
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            this.setyPosition(this.getyPosition() + speed * deltaTime);
+            movement.add(new Vector2(0.0f, 1.0f));
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            this.setxPosition(this.getxPosition() - speed * deltaTime);
+            movement.add(new Vector2(-1.0f, 0.0f));
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            this.setyPosition(this.getyPosition() - speed * deltaTime);
+            movement.add(new Vector2(0.0f, -1.0f));
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            this.setxPosition(this.getxPosition() + speed * deltaTime);
+            movement.add(new Vector2(1.0f, 0.0f));
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             shoot();
         }
+
+        move(movement, speed, deltaTime);
     }
 }

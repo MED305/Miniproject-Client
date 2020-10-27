@@ -2,6 +2,7 @@ package main.java.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends Entity {
     TextureAtlas.AtlasRegion sprite;
@@ -10,9 +11,8 @@ public class Enemy extends Entity {
     public Enemy(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_target) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
-        xPosition = (float) Math.random() * 800;
-        yPosition = (float) Math.random() * 800;
         target = c_target;
+        this.position = new Vector2((float) Math.random() * 800, (float) Math.random() * 800);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Enemy extends Entity {
         this.move(deltaTime);
     }
 
-    private void move(float deltaTime) {
+    private void move(float deltaTime) { // TODO: Change to use Vector2 instead
         float speed = 50;
 
         if (this.xPosition >= target.xPosition) {
