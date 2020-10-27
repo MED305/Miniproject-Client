@@ -10,30 +10,25 @@ public class Enemy extends Entity {
 
     public Enemy(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_target) {
         super(c_batch, c_atlas);
-        sprite = c_sprite;
-        target = c_target;
+
+        this.sprite = c_sprite;
+        this.target = c_target;
         this.position = new Vector2((float) Math.random() * 800, (float) Math.random() * 800);
+        this.setSize(20, 20);
     }
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(sprite, xPosition, yPosition);
+        batch.draw(sprite, position.x, position.y);
         this.move(deltaTime);
+        this.collisionBox.set(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
     }
 
-    private void move(float deltaTime) { // TODO: Change to use Vector2 instead
+    private void move(float deltaTime) {
         float speed = 50;
 
-        if (this.xPosition >= target.xPosition) {
-            this.xPosition -= speed * deltaTime;
-        } else {
-            this.xPosition += speed * deltaTime;
-        }
-
-        if (this.yPosition >= target.yPosition) {
-            this.yPosition -= speed * deltaTime;
-        } else {
-            this.yPosition += speed * deltaTime;
-        }
+        Vector2 movement = new Vector2(target.position).sub(this.position);
+        movement.nor().scl(speed).scl(deltaTime);
+        this.position.add(movement);
     }
 }
