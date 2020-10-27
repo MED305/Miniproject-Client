@@ -1,10 +1,11 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import main.java.Main;
 
 public class Bullet extends Entity {
 
@@ -37,13 +38,18 @@ public class Bullet extends Entity {
         this.collisionBox.set(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
 
         if (y > Gdx.graphics.getHeight()) {
-            Main.bulletsToRemove.add(this);
+            this.remove();
         }
     }
 
-    public void remove() {
-        if (this.remove) {
-            Main.entities.remove(this);
+    @Override
+    public void collision(ArrayList<Entity> others) {
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof Enemy
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                this.remove();
+                entity.remove();
+            }
         }
     }
 }

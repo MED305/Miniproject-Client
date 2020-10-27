@@ -1,9 +1,13 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+
+import main.java.Main;
 
 public abstract class Entity {
     protected SpriteBatch batch;
@@ -22,6 +26,12 @@ public abstract class Entity {
     }
 
     public abstract void update(float deltaTime);
+
+    public void remove() {
+        Main.garbage.add(this);
+    }
+
+    public abstract void collision(ArrayList<Entity> others);
 
     public float getxPosition() {
         return xPosition;

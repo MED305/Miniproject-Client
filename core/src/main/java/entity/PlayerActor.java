@@ -1,5 +1,7 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -32,6 +34,17 @@ public class PlayerActor extends Entity {
     private void move(Vector2 movement, float speed, float deltaTime) {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
+    }
+
+    @Override
+    public void collision(ArrayList<Entity> others) {
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof Enemy
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                System.out.println("You loose");
+                System.exit(0);
+            }
+        }
     }
 
     public void detectInput(float deltaTime) {

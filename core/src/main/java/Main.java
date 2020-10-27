@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    static public ArrayList<Bullet> bulletsToRemove;
+    static public ArrayList<Entity> garbage;
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -27,7 +27,7 @@ public class Main extends ApplicationAdapter {
     public void create() {
 
         entities = new ArrayList<>();
-        bulletsToRemove = new ArrayList<>();
+        garbage = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
@@ -39,7 +39,7 @@ public class Main extends ApplicationAdapter {
     @Override
     public void render() {
         deltaTime = Gdx.graphics.getDeltaTime();
-        bulletsToRemove.clear();
+        garbage.clear();
 
         Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -49,22 +49,18 @@ public class Main extends ApplicationAdapter {
         for (Entity entity : entities) {
             entity.update(deltaTime);
             collisionDrawer.rectangle(entity.getCollisionBox());
+            entity.collision(entities);
         }
 
-        for (Bullet bullet : bulletsToRemove) {
-            bullet.remove();
+        for (Entity entity : garbage) {
+            entities.remove(entity);
         }
 
         player.detectInput(deltaTime);
 
-        System.out.println(bulletsToRemove.size());
+        System.out.println(garbage.size());
 
         batch.end();
-
-        if (player.getCollisionBox().overlaps(enemy.getCollisionBox())) {
-            System.out.println("You Died!!");
-            System.exit(0);
-        }
     }
 
     @Override
@@ -72,4 +68,5 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+
 }

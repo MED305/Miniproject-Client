@@ -1,7 +1,10 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends Entity {
@@ -19,9 +22,9 @@ public class Enemy extends Entity {
 
     @Override
     public void update(float deltaTime) {
+        this.collisionBox = new Rectangle(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
         batch.draw(sprite, position.x, position.y);
         this.move(deltaTime);
-        this.collisionBox.set(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
     }
 
     private void move(float deltaTime) {
@@ -32,10 +35,8 @@ public class Enemy extends Entity {
         this.position.add(movement);
     }
 
-    public void kill(float deltaTime) {
-        this.sprite = null;
-        this.collisionBox = null;
-        this.target = null;
-        System.out.println("Hit");
+    @Override
+    public void collision(ArrayList<Entity> others) {
+
     }
 }
