@@ -3,6 +3,7 @@ package main.java.entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PickUp extends Entity {
@@ -28,5 +29,11 @@ public class PickUp extends Entity {
             int high = 100;
             int x = r.nextInt(high - low) + low;
         }
+    }
+
+    @Override
+    public void collision(ArrayList<Entity> others) {
+        // TODO Auto-generated method stub
+
     }
 }
