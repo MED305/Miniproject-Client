@@ -68,5 +68,4 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
-
 }
