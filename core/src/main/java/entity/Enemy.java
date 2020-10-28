@@ -2,22 +2,22 @@ package main.java.entity;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends Entity {
-    TextureAtlas.AtlasRegion sprite;
+    Sprite sprite;
     PlayerActor target;
 
-    public Enemy(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_target) {
+    public Enemy(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_target) {
         super(c_batch, c_atlas);
-
-        this.sprite = c_sprite;
+        this.sprite = c_atlas.createSprite("zombie/zombie");
         this.target = c_target;
         this.position = new Vector2((float) Math.random() * 800, (float) Math.random() * 800);
-        this.setSize(20, 20);
+        this.setCollisionSize(20, 20);
     }
 
     @Override

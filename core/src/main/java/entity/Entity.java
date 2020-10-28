@@ -49,7 +49,7 @@ public abstract class Entity {
         this.yPosition = yPosition;
     }
 
-    protected void setSize(float xSize, float ySize) {
+    protected void setCollisionSize(float xSize, float ySize) {
         collisionBox.width = xSize;
         collisionBox.height = ySize;
     }

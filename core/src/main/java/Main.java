@@ -30,8 +30,8 @@ public class Main extends ApplicationAdapter {
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
-        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
+        entities.add(player = new PlayerActor(batch, atlas));
+        entities.add(enemy = new Enemy(batch, atlas, player));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
     }
 

@@ -22,7 +22,7 @@ public class Bullet extends Entity {
         super(c_batch, c_atlas);
         player = c_player;
         this.position = new Vector2(player.position.x, player.position.y);
-        this.setSize(5, 5);
+        this.setCollisionSize(5, 5);
 
         if (texture == null) {
             texture = atlas.findRegion("player/Bullet/Bullet1");
