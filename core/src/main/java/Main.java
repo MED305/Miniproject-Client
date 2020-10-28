@@ -25,7 +25,6 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         batch = new SpriteBatch();
