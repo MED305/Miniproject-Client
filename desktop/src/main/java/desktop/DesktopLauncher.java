@@ -11,8 +11,9 @@ public class DesktopLauncher {
 
 		config.title = "Game Window";
 		config.resizable = true;
-		config.width = 800;
-		config.height = 800;
+		config.width = 400;
+		config.height = 400;
+		config.fullscreen = true;
 
 		// Pack all textures
 		// TODO: REMOVE THIS BEFORE RELEASE
