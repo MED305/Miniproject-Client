@@ -50,23 +50,23 @@ public class Lobby {
     void updateLobbies(List<SubLobby> s) throws IOException{
         System.out.println("1");
         System.out.println(s.size());
-        for(int i = 0; i < s.size(); i++) {
+        for (SubLobby subLobby : s) {
             System.out.println("2");
 
-            if(subLobbies.size() == 0){
-                subLobbies.add(s.get(i));
-                System.out.println("New lobby: "+s.get(i).getLobbyName());
+            if (subLobbies.size() == 0) {
+                subLobbies.add(subLobby);
+                System.out.println("New lobby: " + subLobby.getLobbyName());
                 break;
             }
 
-            for (int j = 0; j<subLobbies.size(); j++){
+            for (int j = 0; j < subLobbies.size(); j++) {
                 System.out.println("3");
-                if(s.get(i).getLobbyName().equals(subLobbies.get(j).getLobbyName())){
+                if (subLobby.getLobbyName().equals(subLobbies.get(j).getLobbyName())) {
                     System.out.println("4");
                     break;
-                } else if (j == subLobbies.size()-1){
-                    subLobbies.add(s.get(i));
-                    System.out.println("New lobby: "+s.get(i).getLobbyName());
+                } else if (j == subLobbies.size() - 1) {
+                    subLobbies.add(subLobby);
+                    System.out.println("New lobby: " + subLobby.getLobbyName());
                 }
             }
 
@@ -75,9 +75,9 @@ public class Lobby {
     void joinLobby(String lobbyName) throws IOException {
         updateLobbies(sender.requestLobbyList());
 
-        for (int i = 0; i < subLobbies.size(); i++) {
-            if (subLobbies.get(i).getLobbyName().equals(lobbyName)) {
-                subLobbies.get(i).addToPlayers(this.playerID);
+        for (SubLobby subLobby : subLobbies) {
+            if (subLobby.getLobbyName().equals(lobbyName)) {
+                subLobby.addToPlayers(this.playerID);
             }
         }
     }
@@ -97,8 +97,7 @@ public class Lobby {
 
         for (int i = 0; i < subLobbies.size(); i++) {
             if (subLobbies.get(i).getLobbyName().equals(lobbyName)) {
-                int j = subLobbies.get(i).getPlayers().indexOf(playerID);
-                subLobbies.get(i).getPlayers().remove(j);
+                subLobbies.get(i).getPlayers().remove(playerID);
                 if(subLobbies.get(i).getPlayers().size() == 0) {
                     subLobbies.remove(i);
                 }
@@ -118,9 +117,9 @@ public class Lobby {
                 removeFromLobby(lobbyName);
             } else if (input.equals("list")) {
 
-                for (int i = 0; i < subLobbies.size(); i++) {
-                    if (subLobbies.get(i).getLobbyName().equals(lobbyName)) {
-                        subLobbies.get(i).printPlayers();
+                for (SubLobby subLobby : subLobbies) {
+                    if (subLobby.getLobbyName().equals(lobbyName)) {
+                        subLobby.printPlayers();
                     }
                 }
                 playerOptions(lobbyName);
@@ -149,9 +148,9 @@ public class Lobby {
                 startGame(lobbyName); //Start ny instance af et game!
             } else if (input.equals("list")) {
 
-                for (int i = 0; i < subLobbies.size(); i++) {
-                    if (subLobbies.get(i).getLobbyName().equals(lobbyName)) {
-                        subLobbies.get(i).printPlayers();
+                for (SubLobby subLobby : subLobbies) {
+                    if (subLobby.getLobbyName().equals(lobbyName)) {
+                        subLobby.printPlayers();
                     }
                 }
 
@@ -191,7 +190,7 @@ public class Lobby {
 
                 System.out.println("Join a Lobby. List of available games");
                 for (int i = 0; i < subLobbies.size(); i++) {
-                    System.out.println(subLobbies.get(i).getLobbyName() + " (" + subLobbies.get(i).getPlayers().size() + "/4)");
+                    System.out.println(subLobbies.get(i).getLobbyName() + " (" + subLobbies.get(i).getPlayers().size() + "/5)");
                 }
                 String lobbyName = scanner.nextLine();
                 this.currentLobby = lobbyName;
@@ -219,6 +218,25 @@ public class Lobby {
 
     public static void main(String[] args) throws IOException {
         Lobby l = new Lobby();
+    }
+
+    class SubLobby {
+        public SubLobby(String code, String playerID) {
+        }
+
+        public String getLobbyName() {
+            return null;
+        }
+
+        public void addToPlayers(String playerID) {
+        }
+
+        public List getPlayers() {
+            return null;
+        }
+
+        public void printPlayers() {
+        }
     }
 }
 
