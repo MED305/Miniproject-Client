@@ -16,7 +16,7 @@ public class PlayerActor extends Entity {
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
-        this.position = new Vector2(100.0f, 100.0f);
+        this.position = new Vector2(100f, 100.0f);
         this.setSize(20, 20);
 
     }
@@ -25,7 +25,7 @@ public class PlayerActor extends Entity {
     public void update(float deltaTime) {
         batch.draw(sprite, position.x, position.y);
         this.collisionBox.set(this.xPosition, this.yPosition, this.collisionBox.width, this.collisionBox.height);
-        System.out.println(this.position.toString());
+        //System.out.println(this.position.toString());
     }
 
     private void shoot() {
@@ -68,8 +68,6 @@ public class PlayerActor extends Entity {
     public void vecortofloat (Vector2 position){
     netFloatX = position.x;
     netFloatY = position.y;
-    System.out.println(netFloatX);
-    System.out.println(netFloatY);
     }
 
     /*public void floatToVector (float netfloatx, float netfloaty){

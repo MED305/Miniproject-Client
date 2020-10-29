@@ -6,23 +6,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.*;
-import main.java.ConSocket;
+import main.java.Server.ConSocket;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.util.ArrayList;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.Scanner;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
     static public ArrayList<Bullet> bulletsToRemove;
-
+    ConSocket con = new ConSocket ();
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -32,11 +24,9 @@ public class Main extends ApplicationAdapter {
     Enemy enemy;
 
     float deltaTime;
-    //public void datacon(){
 
     @Override
     public void create() {
-        ConSocket con = new ConSocket ();
         con.conection();
         entities = new ArrayList<>();
         bulletsToRemove = new ArrayList<>();
@@ -52,6 +42,7 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void render() {
+
         deltaTime = Gdx.graphics.getDeltaTime();
         bulletsToRemove.clear();
 
@@ -72,9 +63,10 @@ public class Main extends ApplicationAdapter {
 
         player.detectInput(deltaTime);
 
-        System.out.println(bulletsToRemove.size());
+        //System.out.println(bulletsToRemove.size());
 
         batch.end();
+        //con.update();
     }
 
     @Override

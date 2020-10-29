@@ -1,17 +1,22 @@
+package main.java.Server;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.Socket;
 import java.io.IOException;
 import java.util.Scanner;
+import main.java.Main;
+import main.java.entity.*;
 
 public class ConSocket{
     boolean connect = true;
-    Scanner input = new Scanner(System.in);
+    //Scanner input = new Scanner(System.in);
 
     public void conection() {
 
         try {
             // Create a socket to connect to the server
-            java.net.Socket connectToServer = new java.net.Socket("localhost", 6969);
+            java.net.Socket connectToServer = new Socket("localhost", 6969);
             //Socket connectToServer = new Socket("192.168.43.26", 7000);
 
 
@@ -27,26 +32,13 @@ public class ConSocket{
                 System.out.println("you are not connected");
             }
 
-            while (connect) {
-                //Todo: Here the send functions will be called, but are created in the Main
-
-                // Enter annual interest rate
-                // System.out.print("Enter number to be calculated by server: ");
-                //double number = input.nextDouble();
-
-                // Sends the number stored to the server
-                //usToServer.writeDouble(number);
-
-                // The number gets calculated in the server, and returns a number which then gets displayed
-                //double totalNumber = isFromServer.readDouble();
-
-                //System.out.println("Calculated number: " + totalNumber);
-            }
-
         } catch (
                 IOException ex) {
             System.out.println(ex.toString() + '\n');
-
         }
     }
-        }
+        /*public void update(){
+        while (connect = true){
+            System.out.println(PlayerActor.netFloatX);
+            }*/
+}
