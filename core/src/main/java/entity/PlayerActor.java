@@ -1,5 +1,7 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,18 +26,30 @@ public class PlayerActor extends Entity {
     @Override
     public void update(float deltaTime) {
         batch.draw(sprite, position.x, position.y);
-        this.collisionBox.set(this.xPosition, this.yPosition, this.collisionBox.width, this.collisionBox.height);
-        //System.out.println(this.position.toString());
+
+        this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
+
     }
 
-    private void shoot() {
-        Main.entities.add(new Bullet(batch, atlas, this));
+    private void shoot(float deltaTime) {
+        Main.entities.add(new Bullet(batch, atlas, this, deltaTime));
     }
 
     private void move(Vector2 movement, float speed, float deltaTime) {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
 
+    }
+
+    @Override
+    public void collision(ArrayList<Entity> others) {
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof Enemy
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                System.out.println("You loose");
+                System.exit(0);
+            }
+        }
     }
 
     public void detectInput(float deltaTime) {
@@ -58,8 +72,8 @@ public class PlayerActor extends Entity {
             movement.add(new Vector2(1.0f, 0.0f));
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            shoot();
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+            shoot(deltaTime);
         }
 
         move(movement, speed, deltaTime);

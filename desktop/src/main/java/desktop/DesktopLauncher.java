@@ -9,8 +9,9 @@ import main.java.Main;
 
 
 public class DesktopLauncher {
+
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+	LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = "Game Window";
 		config.resizable = true;

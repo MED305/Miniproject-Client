@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    static public ArrayList<Bullet> bulletsToRemove;
     ConSocket con = new ConSocket ();
+    static public ArrayList<Entity> garbage;
+    static public ArrayList<Enemy> enemies;
+
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -22,21 +24,25 @@ public class Main extends ApplicationAdapter {
     PlayerActor player;
     PickUp pickup;
     Enemy enemy;
+    EnemySpawn spawner;
 
     float deltaTime;
 
     @Override
     public void create() {
+
         con.conection();
+ master
         entities = new ArrayList<>();
-        bulletsToRemove = new ArrayList<>();
+        garbage = new ArrayList<>();
+        enemies = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
-
+        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
 
     }
 
@@ -44,29 +50,27 @@ public class Main extends ApplicationAdapter {
     public void render() {
 
         deltaTime = Gdx.graphics.getDeltaTime();
-        bulletsToRemove.clear();
+        garbage.clear();
 
         Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
 
-        collisionDrawer.rectangle(player.getCollisionBox());
-
         for (Entity entity : entities) {
             entity.update(deltaTime);
+            collisionDrawer.rectangle(entity.getCollisionBox());
+            entity.collision(entities);
         }
 
-        for (Bullet bullet : bulletsToRemove) {
-            bullet.remove();
+        for (Entity entity : garbage) {
+            entities.remove(entity);
         }
 
         player.detectInput(deltaTime);
-
-        //System.out.println(bulletsToRemove.size());
-
-        batch.end();
         //con.update();
+        batch.end();
+        spawner.newWave();
     }
 
     @Override
@@ -74,6 +78,7 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+
     /*public void sendPosition(){
         try{
 
@@ -85,3 +90,6 @@ public class Main extends ApplicationAdapter {
         }
     }*/
 }
+
+
+

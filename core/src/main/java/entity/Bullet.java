@@ -1,13 +1,16 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import main.java.Main;
+import com.badlogic.gdx.math.Vector2;
 
 public class Bullet extends Entity {
 
-    public static final int SPEED = 400;
+    private Vector2 movement;
+    public static final int SPEED = 500;
     private static TextureAtlas.AtlasRegion texture;
     private final PlayerActor player;
 
@@ -15,29 +18,38 @@ public class Bullet extends Entity {
 
     public boolean remove = false;
 
-    public Bullet(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_player) {
+    public Bullet(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_player, float deltaTime) {
         super(c_batch, c_atlas);
         player = c_player;
-        this.x = player.position.x;
-        this.y = player.position.y;
+        this.position = new Vector2(player.position.x, player.position.y);
+        this.setSize(5, 5);
 
         if (texture == null) {
             texture = atlas.findRegion("player/Bullet/Bullet1");
         }
+
+        movement = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY()).sub(this.position);
+        movement.nor().scl(SPEED).scl(deltaTime);
     }
 
     public void update(float deltaTime) {
-        batch.draw(texture, x, y);
+        batch.draw(texture, position.x, position.y);
+        this.position.add(movement);
+        this.collisionBox.set(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
 
-        y += SPEED * deltaTime;
         if (y > Gdx.graphics.getHeight()) {
-            Main.bulletsToRemove.add(this);
+            this.remove();
         }
     }
 
-    public void remove() {
-        if (this.remove) {
-            Main.entities.remove(this);
+    @Override
+    public void collision(ArrayList<Entity> others) {
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof Enemy
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                this.remove();
+                entity.remove();
+            }
         }
     }
 }
