@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.desktop.DesktopLauncher;
 import sun.rmi.rmic.Main;
 
 import java.io.IOException;
@@ -88,7 +89,7 @@ public class Lobby {
 
     void startGame(String lobby) {
         String[] arguments = new String[]{playerID};
-        Main.main(arguments);
+        DesktopLauncher.main(arguments);
     }
 
     void removeFromLobby(String lobbyName) {
