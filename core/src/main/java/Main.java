@@ -6,13 +6,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.*;
+import main.java.Server.ConSocket;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
+    ConSocket con = new ConSocket ();
     static public ArrayList<Entity> garbage;
+    static public ArrayList<Enemy> enemies;
+
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -20,24 +24,31 @@ public class Main extends ApplicationAdapter {
     PlayerActor player;
     PickUp pickup;
     Enemy enemy;
+    EnemySpawn spawner;
 
     float deltaTime;
 
     @Override
     public void create() {
 
+        con.conection();
+ master
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
+        enemies = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
+
     }
 
     @Override
     public void render() {
+
         deltaTime = Gdx.graphics.getDeltaTime();
         garbage.clear();
 
@@ -57,10 +68,9 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-
-        System.out.println(garbage.size());
-
+        //con.update();
         batch.end();
+        spawner.newWave();
     }
 
     @Override
@@ -68,4 +78,18 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+
+    /*public void sendPosition(){
+        try{
+
+            usToServer.writeFloat(player.netFloatX);
+            usToServer.writeFloat(player.netFloatY);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 }
+
+
+
