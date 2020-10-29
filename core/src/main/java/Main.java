@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
     static public ArrayList<Entity> garbage;
+    static public ArrayList<Enemy> enemies;
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -20,20 +21,22 @@ public class Main extends ApplicationAdapter {
     PlayerActor player;
     PickUp pickup;
     Enemy enemy;
+    EnemySpawn spawner;
 
     float deltaTime;
 
     @Override
     public void create() {
-
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
+        enemies = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
+        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
     }
 
     @Override
@@ -57,10 +60,8 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-
-        System.out.println(garbage.size());
-
         batch.end();
+        spawner.newWave();
     }
 
     @Override

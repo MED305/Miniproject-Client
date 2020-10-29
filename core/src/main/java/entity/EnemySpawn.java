@@ -2,34 +2,42 @@ package main.java.entity;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+
+import main.java.Main;
+
 public class EnemySpawn extends Entity {
-    private int enemySpawnTimer = -1;
-    private int spawnEnemies = 0;
 
-    public void newWave()
-    {
-        for (int i=0; i<10; i++) {
-            Enemy(new Enemy(), position.x, position.y);
-        }
+    private float spawnTimer = 0;
+    private int enemiesToSpawn = 0;
+
+    public EnemySpawn(SpriteBatch c_batch, TextureAtlas c_atlas, float c_x, float c_y) {
+        super(c_batch, c_atlas);
+        this.position = new Vector2(c_x, c_y);
     }
 
-    public void act(){
-        if (++enemySpawnTimer == 10*2){
-            enemySpawnTimer = 0;
-            spawnEnemies -= 2;
-            for (int i=0; i<2; i++) Enemy(new Enemy(), position.x, position.y);
-        }
-        else {
-            if (Enemy = null)  //hvis der ikke er enemies skal den spawne (getObject(Enemy).isEmpty())
-            {spawnEnemies = 2*25}
+    public void newWave() {
+        for (int i = 0; i < enemiesToSpawn; i++) {
+            Main.entities.add(new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
         }
     }
-
-
 
     @Override
     public void update(float deltaTime) {
+        enemiesToSpawn = 0;
 
+        if (Main.enemies.size() == 0) {
+            spawnTimer += deltaTime;
+        }
+
+        System.out.println(spawnTimer);
+
+        if (spawnTimer > 5) {
+            enemiesToSpawn += 10;
+            spawnTimer = 0;
+        }
     }
 
     @Override
