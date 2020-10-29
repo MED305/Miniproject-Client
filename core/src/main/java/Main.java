@@ -32,7 +32,6 @@ public class Main extends ApplicationAdapter {
     public void create() {
 
         con.conection();
- master
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
