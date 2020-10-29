@@ -67,7 +67,7 @@ public class PlayerActor extends Entity {
             movement.add(new Vector2(1.0f, 0.0f));
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             shoot(deltaTime);
         }
 
