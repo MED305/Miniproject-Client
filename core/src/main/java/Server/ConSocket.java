@@ -9,16 +9,30 @@ import main.java.Main;
 import main.java.entity.*;
 
 public class ConSocket{
-    boolean connect = true;
-    //Scanner input = new Scanner(System.in);
+    boolean connect = false;
+    Scanner input = new Scanner(System.in);
+    String IP;
+    boolean lobby = false;
 
     public void conection() {
 
         try {
+
             // Create a socket to connect to the server
-            java.net.Socket connectToServer = new Socket("localhost", 6969);
+            //Socket connectToServer = new Socket("localhost", 6969);
             //Socket connectToServer = new Socket("192.168.43.26", 7000);
 
+
+
+
+            while(connect = false){
+                System.out.println("Connect to IP here");
+                String IP = input.nextLine();
+                connect = true;
+
+            }
+
+            Socket connectToServer = new Socket("IP", 6969);
 
             // Create an input stream to receive data from the server
             DataInputStream isFromServer = new DataInputStream(connectToServer.getInputStream());
@@ -30,6 +44,11 @@ public class ConSocket{
                 System.out.println("you are connected");
             } else {
                 System.out.println("you are not connected");
+            }
+
+            while(lobby = false){
+                System.out.println("Protect the Hospital from the Zombies!");
+
             }
 
         } catch (
