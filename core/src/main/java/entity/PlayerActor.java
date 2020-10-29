@@ -9,7 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
 
 public class PlayerActor extends Entity {
-
+    public float netFloatX;
+    public float netFloatY;
     TextureAtlas.AtlasRegion sprite;
 
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
@@ -17,6 +18,7 @@ public class PlayerActor extends Entity {
         sprite = c_sprite;
         this.position = new Vector2(100.0f, 100.0f);
         this.setSize(20, 20);
+
     }
 
     @Override
@@ -33,6 +35,7 @@ public class PlayerActor extends Entity {
     private void move(Vector2 movement, float speed, float deltaTime) {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
+
     }
 
     public void detectInput(float deltaTime) {
@@ -61,4 +64,15 @@ public class PlayerActor extends Entity {
 
         move(movement, speed, deltaTime);
     }
+
+    public void vecortofloat (Vector2 position){
+    netFloatX = position.x;
+    netFloatY = position.y;
+    System.out.println(netFloatX);
+    System.out.println(netFloatY);
+    }
+
+    /*public void floatToVector (float netfloatx, float netfloaty){
+        netpos = new Vector2(netfloatx, netfloaty);
+    }*/
 }

@@ -6,13 +6,23 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.*;
+import main.java.ConSocket;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.util.ArrayList;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
     static public ArrayList<Bullet> bulletsToRemove;
+
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -22,10 +32,12 @@ public class Main extends ApplicationAdapter {
     Enemy enemy;
 
     float deltaTime;
+    //public void datacon(){
 
     @Override
     public void create() {
-
+        ConSocket con = new ConSocket ();
+        con.conection();
         entities = new ArrayList<>();
         bulletsToRemove = new ArrayList<>();
         batch = new SpriteBatch();
@@ -34,6 +46,8 @@ public class Main extends ApplicationAdapter {
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
         entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas, player));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+
+
     }
 
     @Override
@@ -68,4 +82,14 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+    /*public void sendPosition(){
+        try{
+
+            usToServer.writeFloat(player.netFloatX);
+            usToServer.writeFloat(player.netFloatY);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 }
