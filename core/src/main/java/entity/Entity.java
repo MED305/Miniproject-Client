@@ -1,36 +1,60 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import main.java.Main;
 
 public abstract class Entity {
     protected SpriteBatch batch;
     protected TextureAtlas atlas;
+    protected Rectangle collisionBox;
+    protected Vector2 position;
 
-    protected int xPosition, yPosition;
+    protected float xPosition, yPosition;
 
-    protected float maxSpeed, acceleration, deacceleration;
+    protected double maxSpeed, acceleration, deacceleration;
 
     public Entity(SpriteBatch c_batch, TextureAtlas c_atlas) {
         batch = c_batch;
         atlas = c_atlas;
+        collisionBox = new Rectangle(xPosition, yPosition, 0, 0);
     }
 
-    public abstract void update();
+    public abstract void update(float deltaTime);
 
-    public int getxPosition() {
+    public void remove() {
+        Main.garbage.add(this);
+    }
+
+    public abstract void collision(ArrayList<Entity> others);
+
+    public float getxPosition() {
         return xPosition;
     }
 
-    public void setxPosition(int xPosition) {
+    public void setxPosition(float xPosition) {
         this.xPosition = xPosition;
     }
 
-    public int getyPosition() {
+    public float getyPosition() {
         return yPosition;
     }
 
-    public void setyPosition(int yPosition) {
+    public void setyPosition(float yPosition) {
         this.yPosition = yPosition;
+    }
+
+    protected void setSize(float xSize, float ySize) {
+        collisionBox.width = xSize;
+        collisionBox.height = ySize;
+    }
+
+    public Rectangle getCollisionBox() {
+        return this.collisionBox;
     }
 }
