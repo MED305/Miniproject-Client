@@ -4,17 +4,26 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import main.java.Main;
+import main.java.graphics.Score;
 
 public class PlayerActor extends Entity {
+
+    Sprite sprite;
+    PickUpSpawn puspawner;
+
+    int hp = 100;
+    Score score;
 
     public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_atlas.createSprite("player/DudeGuy");
+        score = new Score();
         this.position = new Vector2(100.0f, 100.0f);
         this.setCollisionSize(sprite.getWidth(), sprite.getHeight());
     }
@@ -41,8 +50,26 @@ public class PlayerActor extends Entity {
         for (Entity entity : others) {
             if (entity.getCollisionBox() != null & entity instanceof Enemy
                     & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
-                System.out.println("You loose");
-                System.exit(0);
+
+                hp += -1;
+                System.out.println("Dit liv er: " + hp);
+                if (hp < 0) {
+                    System.out.println("You loose");
+                    System.exit(0);
+                }
+            }
+        }
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof PickUp
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                System.out.println("You gained 50 HP!");
+                if (hp < 50) {
+                    hp += 50;
+                } else {
+                    hp = 100;
+                }
+                System.out.println("Dit HP er: " + hp);
+
             }
         }
     }

@@ -1,6 +1,58 @@
 
 texture_atlas.png
-size: 1024,512
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Inside_768x768
+  rotate: false
+  xy: 1, 1
+  size: 768, 768
+  orig: 768, 768
+  offset: 0, 0
+  index: -1
+
+texture_atlas2.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Inside_black_768x768
+  rotate: false
+  xy: 1, 1
+  size: 768, 768
+  orig: 768, 768
+  offset: 0, 0
+  index: -1
+
+texture_atlas3.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Outside_768x768
+  rotate: false
+  xy: 1, 1
+  size: 768, 768
+  orig: 768, 768
+  offset: 0, 0
+  index: -1
+
+texture_atlas4.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Outside_black_768x768
+  rotate: false
+  xy: 1, 1
+  size: 768, 768
+  orig: 768, 768
+  offset: 0, 0
+  index: -1
+
+texture_atlas5.png
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

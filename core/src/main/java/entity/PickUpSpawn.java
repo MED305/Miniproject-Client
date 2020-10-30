@@ -8,32 +8,32 @@ import com.badlogic.gdx.math.Vector2;
 
 import main.java.Main;
 
-public class EnemyFactory extends Entity {
+public class PickUpSpawn extends Entity {
 
     private float spawnTimer = 0;
-    private int enemiesToSpawn = 0;
+    private int pickUpsToSpawn = 0;
 
-    public EnemyFactory(SpriteBatch c_batch, TextureAtlas c_atlas, float c_x, float c_y) {
+    public PickUpSpawn(SpriteBatch c_batch, TextureAtlas c_atlas, float c_x, float c_y) {
         super(c_batch, c_atlas);
         this.position = new Vector2(c_x, c_y);
     }
 
-    public void newWave() {
-        for (int i = 0; i < enemiesToSpawn; i++) {
-            Main.entities.add(new Enemy(batch, atlas));
+    public void newPickUp() {
+        for (int i = 0; i < pickUpsToSpawn; i++) {
+            Main.entities.add(new PickUp(atlas.findRegion("pickup"), batch, atlas));
         }
     }
 
     @Override
     public void update(float deltaTime) {
-        enemiesToSpawn = 0;
+        pickUpsToSpawn = 0;
 
         if (Main.enemies.size() == 0) {
             spawnTimer += deltaTime;
         }
 
         if (spawnTimer > 5) {
-            enemiesToSpawn += 0;
+            pickUpsToSpawn += 1;
             spawnTimer = 0;
         }
     }
