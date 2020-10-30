@@ -10,7 +10,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import main.java.entity.*;
 
-
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
@@ -18,7 +17,7 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
-    //map
+    // map
     TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
