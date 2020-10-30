@@ -59,6 +59,5 @@ public class Enemy extends Entity {
 
     @Override
     public void collision(ArrayList<Entity> others) {
-
     }
 }
