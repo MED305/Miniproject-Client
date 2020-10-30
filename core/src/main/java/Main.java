@@ -32,7 +32,7 @@ public class Main extends ApplicationAdapter {
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
         entities.add(player = new PlayerActor(batch, atlas));
         entities.add(enemy = new Enemy(batch, atlas, player));
-        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
+        entities.add(pickup = new PickUp(batch, atlas));
     }
 
     @Override

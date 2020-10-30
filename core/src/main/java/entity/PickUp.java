@@ -8,18 +8,16 @@ import java.util.Random;
 
 public class PickUp extends Entity {
 
-    TextureAtlas.AtlasRegion truck = atlas.findRegion("pickup");
-
     int pickup = 0;
 
-    public PickUp(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
+    public PickUp(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
-        truck = c_sprite;
+        sprite = c_atlas.createSprite("pickup");
     }
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(truck, 200, 200); // drawing the pickup
+        batch.draw(sprite, 200, 200); // drawing the pickup
 
         if (xPosition == 200 && yPosition == 200) { // Checking if player is located on the pickup (not working)
             pickup++; // Counter of pickups achieved

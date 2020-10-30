@@ -2,6 +2,7 @@ package main.java.entity;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,6 +13,7 @@ import main.java.Main;
 public abstract class Entity {
     protected SpriteBatch batch;
     protected TextureAtlas atlas;
+    protected Sprite sprite;
     protected Rectangle collisionBox;
     protected Vector2 position;
 
