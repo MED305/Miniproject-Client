@@ -7,29 +7,27 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import main.java.entity.*;
 import main.java.Server.ConSocket;
-import space.earlygrey.shapedrawer.ShapeDrawer;
 
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    ConSocket con = new ConSocket();
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
-    ShapeDrawer collisionDrawer;
     SpriteBatch batch;
     TextureAtlas atlas;
     PlayerActor player;
     PickUp pickup;
     Enemy enemy;
-    EnemySpawn spawner;
+    EnemyFactory spawner;
+    ConSocket con;
 
     float deltaTime;
 
     @Override
     public void create() {
-      
+        con = new ConSocket();
         con.conection();
 
         entities = new ArrayList<>();
@@ -37,12 +35,11 @@ public class Main extends ApplicationAdapter {
         enemies = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
-        collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
 
         entities.add(player = new PlayerActor(batch, atlas));
-        entities.add(enemy = new Enemy(batch, atlas, player));
+        entities.add(enemy = new Enemy(batch, atlas));
         entities.add(pickup = new PickUp(batch, atlas));
-        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
+        entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
     }
 
     @Override
@@ -58,7 +55,6 @@ public class Main extends ApplicationAdapter {
 
         for (Entity entity : entities) {
             entity.update(deltaTime);
-            collisionDrawer.rectangle(entity.getCollisionBox());
             entity.collision(entities);
         }
 

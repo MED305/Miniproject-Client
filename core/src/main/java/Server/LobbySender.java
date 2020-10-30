@@ -1,4 +1,4 @@
-package main.java;
+package main.java.Server;
 
 import java.util.List;
 
@@ -20,4 +20,3 @@ public class LobbySender {
         return null;
     }
 }
-

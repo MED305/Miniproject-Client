@@ -36,6 +36,12 @@ public class Enemy extends Entity {
         Vector2 movement = new Vector2(target.position).sub(this.position);
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
+
+        if (!sprite.isFlipX() & movement.x < 0) {
+            sprite.flip(true, false);
+        } else if (sprite.isFlipX() & movement.x > 0) {
+            sprite.flip(true, false);
+        }
     }
 
     private PlayerActor findTarget() {
