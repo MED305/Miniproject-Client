@@ -79,12 +79,13 @@ public class PlayerActor extends Entity {
         move(movement, speed, deltaTime);
     }
 
-    public void vecortofloat (Vector2 position){
-    netFloatX = position.x;
-    netFloatY = position.y;
+    public void vecortofloat(Vector2 position) {
+        netFloatX = position.x;
+        netFloatY = position.y;
     }
 
-    /*public void floatToVector (float netfloatx, float netfloaty){
-        netpos = new Vector2(netfloatx, netfloaty);
-    }*/
+    /*
+     * public void floatToVector (float netfloatx, float netfloaty){ netpos = new
+     * Vector2(netfloatx, netfloaty); }
+     */
 }

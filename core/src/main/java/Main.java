@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    ConSocket con = new ConSocket ();
+    ConSocket con = new ConSocket();
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
-
 
     ShapeDrawer collisionDrawer;
     SpriteBatch batch;
@@ -32,7 +31,6 @@ public class Main extends ApplicationAdapter {
     public void create() {
 
         con.conection();
- master
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -68,7 +66,7 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-        //con.update();
+        // con.update();
         batch.end();
         spawner.newWave();
     }
@@ -79,17 +77,12 @@ public class Main extends ApplicationAdapter {
         atlas.dispose();
     }
 
-    /*public void sendPosition(){
-        try{
-
-            usToServer.writeFloat(player.netFloatX);
-            usToServer.writeFloat(player.netFloatY);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
+    /*
+     * public void sendPosition(){ try{
+     * 
+     * usToServer.writeFloat(player.netFloatX);
+     * usToServer.writeFloat(player.netFloatY);
+     * 
+     * } catch (Exception e) { e.printStackTrace(); } }
+     */
 }
-
-
-

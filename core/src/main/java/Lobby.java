@@ -1,16 +1,11 @@
 package main.java;
 
-import main.java.desktop.DesktopLauncher;
-import sun.rmi.rmic.Main;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Lobby {
-
 
     private List<SubLobby> subLobbies = new ArrayList<SubLobby>();
 
@@ -22,11 +17,8 @@ public class Lobby {
 
     Scanner scanner = new Scanner(System.in);
 
-
     Lobby() throws IOException {
         System.out.println("Protect the Hospital from the Zombies!");
-
-
 
         System.out.println("Write your name");
         String id = scanner.nextLine();
@@ -37,7 +29,7 @@ public class Lobby {
         options();
     }
 
-    public String PlayerID(){
+    public String PlayerID() {
         return playerID;
     }
 
@@ -47,8 +39,7 @@ public class Lobby {
         sender.sendSubLobby(subLobby);
     }
 
-
-    void updateLobbies(List<SubLobby> s) throws IOException{
+    void updateLobbies(List<SubLobby> s) throws IOException {
         System.out.println("1");
         System.out.println(s.size());
         for (SubLobby subLobby : s) {
@@ -73,6 +64,7 @@ public class Lobby {
 
         }
     }
+
     void joinLobby(String lobbyName) throws IOException {
         updateLobbies(sender.requestLobbyList());
 
@@ -86,10 +78,8 @@ public class Lobby {
     void checkDuplicate() {
     }
 
-
     void startGame(String lobby) {
-        String[] arguments = new String[]{playerID};
-        DesktopLauncher.main(arguments);
+        String[] arguments = new String[] { playerID };
     }
 
     void removeFromLobby(String lobbyName) {
@@ -99,12 +89,11 @@ public class Lobby {
         for (int i = 0; i < subLobbies.size(); i++) {
             if (subLobbies.get(i).getLobbyName().equals(lobbyName)) {
                 subLobbies.get(i).getPlayers().remove(playerID);
-                if(subLobbies.get(i).getPlayers().size() == 0) {
+                if (subLobbies.get(i).getPlayers().size() == 0) {
                     subLobbies.remove(i);
                 }
             }
         }
-
 
         options();
     }
@@ -137,7 +126,6 @@ public class Lobby {
 
     }
 
-
     void hostOptions(String lobbyName) {
         System.out.println("Write \"start\" and the game will start, or write \"list\" to see the player list.");
         System.out.println("Write \"exit\" to leave the lobby");
@@ -146,7 +134,7 @@ public class Lobby {
             String input = scanner.nextLine();
             if (input.equals("start")) {
                 System.out.println("Game starting");
-                startGame(lobbyName); //Start ny instance af et game!
+                startGame(lobbyName); // Start ny instance af et game!
             } else if (input.equals("list")) {
 
                 for (SubLobby subLobby : subLobbies) {
@@ -154,7 +142,6 @@ public class Lobby {
                         subLobby.printPlayers();
                     }
                 }
-
 
                 hostOptions(lobbyName);
             } else if (input.equals("exit")) {
@@ -172,7 +159,8 @@ public class Lobby {
     }
 
     void options() {
-        System.out.println("Write \"create\" to create a new game, or write \"join\" to see the list of available games to join");
+        System.out.println(
+                "Write \"create\" to create a new game, or write \"join\" to see the list of available games to join");
         String option = scanner.nextLine();
         try {
             if (option.equals("create")) {
@@ -191,7 +179,8 @@ public class Lobby {
 
                 System.out.println("Join a Lobby. List of available games");
                 for (int i = 0; i < subLobbies.size(); i++) {
-                    System.out.println(subLobbies.get(i).getLobbyName() + " (" + subLobbies.get(i).getPlayers().size() + "/5)");
+                    System.out.println(
+                            subLobbies.get(i).getLobbyName() + " (" + subLobbies.get(i).getPlayers().size() + "/5)");
                 }
                 String lobbyName = scanner.nextLine();
                 this.currentLobby = lobbyName;
@@ -202,8 +191,7 @@ public class Lobby {
                 System.out.println("Enter a valid option please");
                 options();
             }
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             System.out.println("Enter a valid option please");
             options();
@@ -215,7 +203,6 @@ public class Lobby {
             playerOptions(this.currentLobby);
         }
     }
-
 
     public static void main(String[] args) throws IOException {
         Lobby l = new Lobby();
@@ -240,9 +227,3 @@ public class Lobby {
         }
     }
 }
-
-
-
-
-
-
