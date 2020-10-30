@@ -12,7 +12,7 @@ import main.java.entity.*;
 public class ConSocket{
     boolean connect = true;
     Scanner input = new Scanner(System.in);
-    String IP;
+    //String IP;
     boolean lobby = false;
 
 
@@ -26,23 +26,42 @@ public class ConSocket{
 
 
 
-
-            if(connect = true){
+            if(connect = true) {
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine();
-                connect = false;
+
+                if (connect = true) {
+                    Socket connectToServer = new Socket(IP, 6969);
+
+
+                    // Create an input stream to receive data from the server
+                    ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
+
+                    // Create an output stream to send data to the server
+                    ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+                }
+
+                    else{
+                        System.out.println("You are not connected");
+                        connect = false;
+                    }
 
             }
 
-            Socket connectToServer = new Socket(IP, 6969);
+            if(connect = false){
+                System.exit(-1);
+
+            }
+
+           /* Socket connectToServer = new Socket(IP, 6969);
 
 
             // Create an input stream to receive data from the server
             ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
             // Create an output stream to send data to the server
-            ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+            ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());*/
 
             if (connect = true) {
                 System.out.println("you are connected");
