@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import main.java.Main;
+import main.java.graphics.Score;
 
 
 public class PlayerActor extends Entity {
@@ -17,11 +18,13 @@ public class PlayerActor extends Entity {
     PickUpSpawn puspawner;
 
     int hp = 100;
+    Score score;
 
 
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_sprite;
+        score = new Score();
         this.position = new Vector2(100.0f, 100.0f);
         this.setSize(20, 20);
     }

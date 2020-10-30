@@ -5,8 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import main.java.entity.*;
-import space.earlygrey.shapedrawer.ShapeDrawer;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,10 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
-    ShapeDrawer collisionDrawer;
+    // map
+    TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+
     SpriteBatch batch;
     TextureAtlas atlas;
     PlayerActor player;
@@ -32,8 +37,10 @@ public class Main extends ApplicationAdapter {
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
         batch = new SpriteBatch();
+        map = new TmxMapLoader().load("textures/Maps/MAP.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
         atlas = new TextureAtlas("texture_atlas.atlas");
-        collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
+
         entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
         entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
         entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
@@ -49,11 +56,13 @@ public class Main extends ApplicationAdapter {
         Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        renderer.render();
+
         batch.begin();
 
         for (Entity entity : entities) {
             entity.update(deltaTime);
-            collisionDrawer.rectangle(entity.getCollisionBox());
+
             entity.collision(entities);
         }
 
