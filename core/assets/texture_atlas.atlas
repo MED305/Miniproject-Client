@@ -4,7 +4,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Inside_768x768
+maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Inside_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -17,7 +17,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Inside_black_768x768
+maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Inside_black_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -30,7 +30,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Outside_768x768
+maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Outside_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -43,7 +43,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Outside_black_768x768
+maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Outside_black_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -56,48 +56,6 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village - Inside_black
-  rotate: false
-  xy: 419, 166
-  size: 144, 320
-  orig: 144, 320
-  offset: 0, 0
-  index: -1
-Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village - Outside_blackpng
-  rotate: false
-  xy: 892, 487
-  size: 128, 432
-  orig: 128, 432
-  offset: 0, 0
-  index: -1
-Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village_black
-  rotate: false
-  xy: 362, 487
-  size: 272, 432
-  orig: 272, 432
-  offset: 0, 0
-  index: -1
-Maps/Map Tiles/Serene Village/16x16_original/Serene Village 
-  rotate: false
-  xy: 1, 36
-  size: 272, 432
-  orig: 272, 432
-  offset: 0, 0
-  index: -1
-Maps/Map Tiles/Serene Village/16x16_original/Serene Village - Inside
-  rotate: false
-  xy: 274, 148
-  size: 144, 320
-  orig: 144, 320
-  offset: 0, 0
-  index: -1
-Maps/Map Tiles/Serene Village/16x16_original/Serene Village - Outside
-  rotate: false
-  xy: 564, 54
-  size: 128, 432
-  orig: 128, 432
-  offset: 0, 0
-  index: -1
 badlogic
   rotate: false
   xy: 635, 663
@@ -124,6 +82,48 @@ guest/guest2
   xy: 419, 149
   size: 16, 16
   orig: 16, 16
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_black_outline/Serene Village - Inside_black
+  rotate: false
+  xy: 419, 166
+  size: 144, 320
+  orig: 144, 320
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_black_outline/Serene Village - Outside_blackpng
+  rotate: false
+  xy: 892, 487
+  size: 128, 432
+  orig: 128, 432
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_black_outline/Serene Village_black
+  rotate: false
+  xy: 362, 487
+  size: 272, 432
+  orig: 272, 432
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_original/Serene Village 
+  rotate: false
+  xy: 1, 36
+  size: 272, 432
+  orig: 272, 432
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_original/Serene Village - Inside
+  rotate: false
+  xy: 274, 148
+  size: 144, 320
+  orig: 144, 320
+  offset: 0, 0
+  index: -1
+maps/map tiles/Serene Village/16x16_original/Serene Village - Outside
+  rotate: false
+  xy: 564, 54
+  size: 128, 432
+  orig: 128, 432
   offset: 0, 0
   index: -1
 pickup

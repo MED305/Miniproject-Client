@@ -17,7 +17,6 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
-    // map
     TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
