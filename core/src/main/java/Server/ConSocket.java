@@ -1,18 +1,20 @@
 package main.java.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.io.IOException;
 import java.util.Scanner;
 import main.java.Main;
 import main.java.entity.*;
 
+
 public class ConSocket{
-    boolean connect = false;
+    boolean connect = true;
     Scanner input = new Scanner(System.in);
     String IP;
     boolean lobby = false;
+
 
     public void conection() {
 
@@ -25,20 +27,22 @@ public class ConSocket{
 
 
 
-            while(connect = false){
+            if(connect = true){
                 System.out.println("Connect to IP here");
+                System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine();
-                connect = true;
+                connect = false;
 
             }
 
-            Socket connectToServer = new Socket("IP", 6969);
+            Socket connectToServer = new Socket(IP, 6969);
+
 
             // Create an input stream to receive data from the server
-            DataInputStream isFromServer = new DataInputStream(connectToServer.getInputStream());
+            ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
             // Create an output stream to send data to the server
-            DataOutputStream usToServer = new DataOutputStream(connectToServer.getOutputStream());
+            ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
 
             if (connect = true) {
                 System.out.println("you are connected");
