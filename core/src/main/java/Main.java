@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import main.java.entity.*;
+import main.java.Server.ConSocket;
 
 import java.util.ArrayList;
 
@@ -25,13 +26,17 @@ public class Main extends ApplicationAdapter {
     PlayerActor player;
     PickUp pickup;
     Enemy enemy;
-    EnemySpawn spawner;
     PickUpSpawn puspawner;
+    EnemyFactory spawner;
+    ConSocket con;
 
     float deltaTime;
 
     @Override
     public void create() {
+        con = new ConSocket();
+        con.conection();
+
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -39,16 +44,15 @@ public class Main extends ApplicationAdapter {
         map = new TmxMapLoader().load("textures/Maps/MAP.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         atlas = new TextureAtlas("texture_atlas.atlas");
-
-        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
-        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
-        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
-        entities.add(puspawner = new PickUpSpawn(batch, atlas, 500, 500));
+        entities.add(player = new PlayerActor(batch, atlas));
+        entities.add(enemy = new Enemy(batch, atlas));
+        entities.add(pickup = new PickUp(batch, atlas));
+        entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
     }
 
     @Override
     public void render() {
+
         deltaTime = Gdx.graphics.getDeltaTime();
         garbage.clear();
 
@@ -61,7 +65,6 @@ public class Main extends ApplicationAdapter {
 
         for (Entity entity : entities) {
             entity.update(deltaTime);
-
             entity.collision(entities);
         }
 
@@ -70,6 +73,7 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
+        // con.update();
         batch.end();
         spawner.newWave();
         puspawner.newPickUp();
@@ -80,4 +84,13 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+
+    /*
+     * public void sendPosition(){ try{
+     * 
+     * usToServer.writeFloat(player.netFloatX);
+     * usToServer.writeFloat(player.netFloatY);
+     * 
+     * } catch (Exception e) { e.printStackTrace(); } }
+     */
 }

@@ -12,7 +12,6 @@ public class Bullet extends Entity {
 
     private Vector2 movement;
     public static final int SPEED = 500;
-    private static TextureAtlas.AtlasRegion texture;
     private final PlayerActor player;
 
     float x, y;
@@ -21,20 +20,25 @@ public class Bullet extends Entity {
 
     public Bullet(SpriteBatch c_batch, TextureAtlas c_atlas, PlayerActor c_player, float deltaTime) {
         super(c_batch, c_atlas);
-        player = c_player;
+
+        this.player = c_player;
+
+        this.sprite = c_atlas.createSprite("bullet/bullet");
+        this.sprite.scale(5);
+
         this.position = new Vector2(player.position.x, player.position.y);
-        this.setSize(5, 5);
 
-        if (texture == null) {
-            texture = atlas.findRegion("player/Bullet/Bullet1");
-        }
+        this.setCollisionSize(5, 5);
 
-        movement = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY()).sub(this.position);
-        movement.nor().scl(SPEED).scl(deltaTime);
+        this.movement = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY()).sub(this.position);
+        this.movement.nor().scl(SPEED).scl(deltaTime);
+
+        this.sprite.rotate(this.position.angle(this.movement));
     }
 
     public void update(float deltaTime) {
-        batch.draw(texture, position.x, position.y);
+        sprite.setCenter(this.position.x, this.position.y);
+        sprite.draw(batch);
         this.position.add(movement);
         this.collisionBox.set(position.x, position.y, this.collisionBox.width, this.collisionBox.height);
 

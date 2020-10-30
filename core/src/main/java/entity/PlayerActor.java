@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -11,27 +12,26 @@ import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
 import main.java.graphics.Score;
 
-
 public class PlayerActor extends Entity {
 
-    TextureAtlas.AtlasRegion sprite;
+    Sprite sprite;
     PickUpSpawn puspawner;
 
     int hp = 100;
     Score score;
 
-
-    public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
+    public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
-        sprite = c_sprite;
+        sprite = c_atlas.createSprite("player/DudeGuy");
         score = new Score();
         this.position = new Vector2(100.0f, 100.0f);
-        this.setSize(20, 20);
+        this.setCollisionSize(sprite.getWidth(), sprite.getHeight());
     }
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(sprite, position.x, position.y);
+        sprite.setCenter(this.position.x, this.position.y);
+        sprite.draw(batch);
         this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
     }
 
@@ -42,6 +42,7 @@ public class PlayerActor extends Entity {
     private void move(Vector2 movement, float speed, float deltaTime) {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
+
     }
 
     @Override
@@ -52,7 +53,7 @@ public class PlayerActor extends Entity {
 
                 hp += -1;
                 System.out.println("Dit liv er: " + hp);
-                if(hp < 0){
+                if (hp < 0) {
                     System.out.println("You loose");
                     System.exit(0);
                 }
@@ -62,10 +63,9 @@ public class PlayerActor extends Entity {
             if (entity.getCollisionBox() != null & entity instanceof PickUp
                     & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
                 System.out.println("You gained 50 HP!");
-                if(hp < 50){
+                if (hp < 50) {
                     hp += 50;
-                }
-                else{
+                } else {
                     hp = 100;
                 }
                 System.out.println("Dit HP er: " + hp);
@@ -84,6 +84,9 @@ public class PlayerActor extends Entity {
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             movement.add(new Vector2(-1.0f, 0.0f));
+            if (!sprite.isFlipX()) {
+                sprite.flip(true, false);
+            }
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
@@ -92,6 +95,9 @@ public class PlayerActor extends Entity {
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             movement.add(new Vector2(1.0f, 0.0f));
+            if (sprite.isFlipX()) {
+                sprite.flip(true, false);
+            }
         }
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
