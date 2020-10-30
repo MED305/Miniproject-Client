@@ -1,7 +1,5 @@
 package main.java.graphics;
 
-import main.java.entity.PlayerActor;
-
 public class Score {
     private int scoreCount = 0;
 
