@@ -10,9 +10,14 @@ import com.badlogic.gdx.math.Vector2;
 
 import main.java.Main;
 
+
 public class PlayerActor extends Entity {
 
     TextureAtlas.AtlasRegion sprite;
+    PickUpSpawn puspawner;
+
+    int hp = 100;
+
 
     public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
@@ -41,8 +46,27 @@ public class PlayerActor extends Entity {
         for (Entity entity : others) {
             if (entity.getCollisionBox() != null & entity instanceof Enemy
                     & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
-                System.out.println("You loose");
-                System.exit(0);
+
+                hp += -1;
+                System.out.println("Dit liv er: " + hp);
+                if(hp < 0){
+                    System.out.println("You loose");
+                    System.exit(0);
+                }
+            }
+        }
+        for (Entity entity : others) {
+            if (entity.getCollisionBox() != null & entity instanceof PickUp
+                    & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
+                System.out.println("You gained 50 HP!");
+                if(hp < 50){
+                    hp += 50;
+                }
+                else{
+                    hp = 100;
+                }
+                System.out.println("Dit HP er: " + hp);
+
             }
         }
     }
