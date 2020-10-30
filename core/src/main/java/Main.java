@@ -36,7 +36,6 @@ public class Main extends ApplicationAdapter {
     public void create() {
         con = new ConSocket();
         con.conection();
-
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -48,6 +47,7 @@ public class Main extends ApplicationAdapter {
         entities.add(enemy = new Enemy(batch, atlas));
         entities.add(pickup = new PickUp(batch, atlas));
         entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
+        entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
     }
 
     @Override

@@ -4,7 +4,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Inside_768x768
+Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Inside_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -17,7 +17,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Inside_black_768x768
+Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Inside_black_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -30,7 +30,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-maps/map tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Outside_768x768
+Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Original/Serene Village - Outside_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -43,7 +43,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-maps/map tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Outside_black_768x768
+Maps/Map Tiles/Serene Village/RPG_MAKER_MV/Black_outline/Serene Village - Outside_black_768x768
   rotate: false
   xy: 1, 1
   size: 768, 768
@@ -56,16 +56,58 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village - Inside_black
+  rotate: false
+  xy: 419, 176
+  size: 144, 320
+  orig: 144, 320
+  offset: 0, 0
+  index: -1
+Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village - Outside_blackpng
+  rotate: false
+  xy: 892, 497
+  size: 128, 432
+  orig: 128, 432
+  offset: 0, 0
+  index: -1
+Maps/Map Tiles/Serene Village/16x16_black_outline/Serene Village_black
+  rotate: false
+  xy: 362, 497
+  size: 272, 432
+  orig: 272, 432
+  offset: 0, 0
+  index: -1
+Maps/Map Tiles/Serene Village/16x16_original/Serene Village 
+  rotate: false
+  xy: 1, 46
+  size: 272, 432
+  orig: 272, 432
+  offset: 0, 0
+  index: -1
+Maps/Map Tiles/Serene Village/16x16_original/Serene Village - Inside
+  rotate: false
+  xy: 274, 158
+  size: 144, 320
+  orig: 144, 320
+  offset: 0, 0
+  index: -1
+Maps/Map Tiles/Serene Village/16x16_original/Serene Village - Outside
+  rotate: false
+  xy: 564, 64
+  size: 128, 432
+  orig: 128, 432
+  offset: 0, 0
+  index: -1
 badlogic
   rotate: false
-  xy: 362, 240
+  xy: 635, 673
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 1, 46
+  xy: 1, 479
   size: 360, 450
   orig: 360, 450
   offset: 0, 0
@@ -77,9 +119,23 @@ bullet/bullet
   orig: 8, 9
   offset: 0, 0
   index: -1
+guest/guest1
+  rotate: false
+  xy: 274, 141
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+guest/guest2
+  rotate: false
+  xy: 419, 159
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 pickup
   rotate: false
-  xy: 619, 480
+  xy: 635, 656
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -93,63 +149,63 @@ player/Bullet/Bullet1
   index: -1
 player/Bullet/Bullet2
   rotate: false
-  xy: 362, 216
+  xy: 379, 490
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet3
   rotate: false
-  xy: 379, 233
+  xy: 274, 134
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet4
   rotate: false
-  xy: 619, 473
+  xy: 291, 151
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet5
   rotate: false
-  xy: 636, 490
+  xy: 436, 169
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet6
   rotate: false
-  xy: 1, 1
+  xy: 635, 649
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet7
   rotate: false
-  xy: 10, 11
+  xy: 652, 666
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet8
   rotate: false
-  xy: 20, 32
+  xy: 1, 1
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/DudeGuy
   rotate: false
-  xy: 362, 223
+  xy: 362, 480
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 singleWhitePixel
   rotate: false
-  xy: 27, 44
+  xy: 1021, 928
   size: 1, 1
   orig: 1, 1
   offset: 0, 0

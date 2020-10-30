@@ -33,7 +33,6 @@ public class PickUp extends Entity {
             if (entity.getCollisionBox() != null & entity instanceof PlayerActor
                     & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
                 this.remove();
-
             }
         }
     }

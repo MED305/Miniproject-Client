@@ -20,7 +20,7 @@ public class PickUpSpawn extends Entity {
 
     public void newPickUp() {
         for (int i = 0; i < pickUpsToSpawn; i++) {
-            Main.entities.add(new PickUp(atlas.findRegion("pickup"), batch, atlas));
+            Main.entities.add(new PickUp(batch, atlas));
         }
     }
 
