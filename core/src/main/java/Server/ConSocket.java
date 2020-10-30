@@ -26,7 +26,7 @@ public class ConSocket{
 
 
 
-            if(connect = true) {
+            while(connect = true) {
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine();
@@ -40,19 +40,20 @@ public class ConSocket{
 
                     // Create an output stream to send data to the server
                     ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+
                 }
 
                     else{
                         System.out.println("You are not connected");
                         connect = false;
                     }
-
             }
 
-            if(connect = false){
+
+          /*  if(connect = false){
                 System.exit(-1);
 
-            }
+            }*/
 
            /* Socket connectToServer = new Socket(IP, 6969);
 
@@ -77,6 +78,8 @@ public class ConSocket{
         } catch (
                 IOException ex) {
             System.out.println(ex.toString() + '\n');
+            System.out.println("you are not connected");
+            System.exit(0);
         }
     }
         /*public void update(){
