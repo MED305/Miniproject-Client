@@ -11,22 +11,22 @@ import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
 
 public class PlayerActor extends Entity {
-    public float netFloatX;
-    public float netFloatY;
-    TextureAtlas.AtlasRegion sprite;
 
-    public PlayerActor(TextureAtlas.AtlasRegion c_sprite, SpriteBatch c_batch, TextureAtlas c_atlas) {
+  public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
-        sprite = c_sprite;
-        this.position = new Vector2(100f, 100.0f);
-        this.setSize(20, 20);
+        sprite = c_atlas.createSprite("player/DudeGuy");
+        sprite.scale(5);
+        this.position = new Vector2(100.0f, 100.0f);
+        this.setCollisionSize(sprite.getWidth(), sprite.getHeight());
 
     }
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(sprite, position.x, position.y);
 
+        sprite.setCenter(this.position.x, this.position.y);
+        sprite.draw(batch);
+      
         this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
 
     }

@@ -29,19 +29,20 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-
+      
         con.conection();
+
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
         batch = new SpriteBatch();
         atlas = new TextureAtlas("texture_atlas.atlas");
         collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
-        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
-        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
-        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
 
+        entities.add(player = new PlayerActor(batch, atlas));
+        entities.add(enemy = new Enemy(batch, atlas, player));
+        entities.add(pickup = new PickUp(batch, atlas));
+        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
     }
 
     @Override
