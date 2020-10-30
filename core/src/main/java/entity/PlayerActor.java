@@ -12,19 +12,23 @@ import main.java.Main;
 
 public class PlayerActor extends Entity {
 
-    public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
+  public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_atlas.createSprite("player/DudeGuy");
         sprite.scale(5);
         this.position = new Vector2(100.0f, 100.0f);
         this.setCollisionSize(sprite.getWidth(), sprite.getHeight());
+
     }
 
     @Override
     public void update(float deltaTime) {
+
         sprite.setCenter(this.position.x, this.position.y);
         sprite.draw(batch);
+      
         this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
+
     }
 
     private void shoot(float deltaTime) {
@@ -34,6 +38,7 @@ public class PlayerActor extends Entity {
     private void move(Vector2 movement, float speed, float deltaTime) {
         movement.nor().scl(speed).scl(deltaTime);
         this.position.add(movement);
+
     }
 
     @Override
@@ -67,10 +72,20 @@ public class PlayerActor extends Entity {
             movement.add(new Vector2(1.0f, 0.0f));
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             shoot(deltaTime);
         }
 
         move(movement, speed, deltaTime);
     }
+
+    public void vecortofloat(Vector2 position) {
+        netFloatX = position.x;
+        netFloatY = position.y;
+    }
+
+    /*
+     * public void floatToVector (float netfloatx, float netfloaty){ netpos = new
+     * Vector2(netfloatx, netfloaty); }
+     */
 }
