@@ -6,98 +6,112 @@ filter: Nearest,Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 362, 237
+  xy: 362, 247
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 1, 43
+  xy: 1, 53
   size: 360, 450
   orig: 360, 450
   offset: 0, 0
   index: -1
+guest/guest1
+  rotate: false
+  xy: 619, 487
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+guest/guest2
+  rotate: false
+  xy: 1, 8
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 pickup
   rotate: false
-  xy: 619, 477
+  xy: 20, 36
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 player/Bullet/Bullet1
   rotate: false
-  xy: 1, 8
+  xy: 362, 223
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet2
   rotate: false
-  xy: 20, 36
+  xy: 379, 240
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet3
   rotate: false
-  xy: 362, 213
+  xy: 619, 480
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet4
   rotate: false
-  xy: 379, 230
+  xy: 636, 497
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet5
   rotate: false
-  xy: 619, 470
+  xy: 1, 1
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet6
   rotate: false
-  xy: 636, 487
+  xy: 20, 29
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet7
   rotate: false
-  xy: 1, 1
+  xy: 37, 46
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/Bullet/Bullet8
   rotate: false
-  xy: 8, 8
+  xy: 362, 216
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player/DudeGuy
   rotate: false
-  xy: 362, 220
+  xy: 362, 230
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 singleWhitePixel
   rotate: false
-  xy: 20, 34
+  xy: 18, 23
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 zombie/zombie
   rotate: false
-  xy: 1, 15
+  xy: 1, 25
   size: 18, 27
   orig: 18, 27
   offset: 0, 0
