@@ -15,7 +15,6 @@ public class DesktopLauncher {
 		config.width = 800;
 		config.height = 800;
 
-		// Pack all textures
 		// TODO: REMOVE THIS BEFORE RELEASE
 		TexturePacker.Settings settings = new TexturePacker.Settings();
 		settings.pot = true;
