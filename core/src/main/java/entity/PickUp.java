@@ -20,7 +20,9 @@ public class PickUp extends Entity {
 
     @Override
     public void update(float deltaTime) {
-        batch.draw(sprite, 200, 200); // drawing the pickup
+        this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
+        sprite.setCenter(this.position.x + sprite.getWidth() / 2, this.position.y + sprite.getHeight() / 2);
+        sprite.draw(batch);
 
         if (y > Gdx.graphics.getHeight()) {
             this.remove();

@@ -19,12 +19,10 @@ public abstract class Entity {
 
     protected float xPosition, yPosition;
 
-    protected double maxSpeed, acceleration, deacceleration;
-
     public Entity(SpriteBatch c_batch, TextureAtlas c_atlas) {
         batch = c_batch;
         atlas = c_atlas;
-        collisionBox = new Rectangle(xPosition, yPosition, 0, 0);
+        this.collisionBox = new Rectangle();
     }
 
     public abstract void update(float deltaTime);

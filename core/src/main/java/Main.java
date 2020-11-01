@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import main.java.entity.*;
+import space.earlygrey.shapedrawer.ShapeDrawer;
 import main.java.Server.ConSocket;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Main extends ApplicationAdapter {
     PickUpSpawn puspawner;
     EnemyFactory spawner;
     ConSocket con;
+    ShapeDrawer shapeDrawer;
 
     float deltaTime;
 
@@ -48,6 +50,7 @@ public class Main extends ApplicationAdapter {
         entities.add(pickup = new PickUp(batch, atlas));
         entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
         entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
+        shapeDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
     }
 
     @Override
@@ -66,6 +69,7 @@ public class Main extends ApplicationAdapter {
         for (Entity entity : entities) {
             entity.update(deltaTime);
             entity.collision(entities);
+            shapeDrawer.rectangle(entity.getCollisionBox());
         }
 
         for (Entity entity : garbage) {
