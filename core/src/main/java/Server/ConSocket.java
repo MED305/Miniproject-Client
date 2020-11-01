@@ -39,14 +39,38 @@ public class ConSocket{
                 DataOutputStream usToServer = new DataOutputStream(connectToServer.getOutputStream());
 
                 if(intConnect == 2){
-                    System.out.println("i am nr. 2");
+                    System.out.println("You are connected");
+                    System.out.println("Write 'ready' to start the game");
 
-                    System.out.println("det er dumt");
+                    Thread write = new Thread(() -> {
+                        boolean connect = true;
+                        while (connect) {
+                            try {
+                                Scanner scan = null;
+                                String message = scan.nextLine();
+                                DataOutputStream output = null;
+                                output.writeUTF(message);
+                                // output.flush();
+
+                                if (message.equalsIgnoreCase("ready")) {
+                                    connect = false;
+                                }
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    });
+                    write.start();
+                    
+
+
 
                 }
 
                 if (intConnect == 3){
-                    System.out.println("we didn't find your server.");
+                    System.out.println("We didn't find your server.");
                     intConnect = 1;
                 }
                 }

@@ -6,6 +6,9 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.sun.tools.javac.comp.Todo;
 import main.java.Main;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
 
 
 public class DesktopLauncher {
@@ -30,5 +33,9 @@ public class DesktopLauncher {
 		TexturePacker.process(settings, "textures", "./", "texture_atlas");
 
 		new LwjglApplication(new Main(), config);
+
+
+		Thread thread = new Thread();
+		thread.start();
 	}
 }
