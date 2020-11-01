@@ -53,6 +53,7 @@ public class ConSocket{
                                 // output.flush();
 
                                 if (message.equalsIgnoreCase("ready")) {
+                                    System.out.println("Game starting");
                                     connect = false;
                                 }
 
