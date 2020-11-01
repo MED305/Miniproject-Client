@@ -33,9 +33,6 @@ public class DesktopLauncher {
 		TexturePacker.process(settings, "textures", "./", "texture_atlas");
 
 		new LwjglApplication(new Main(), config);
-
-
-		Thread thread = new Thread();
-		thread.start();
+		
 	}
 }
