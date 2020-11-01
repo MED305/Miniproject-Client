@@ -13,48 +13,41 @@ public class ConSocket{
     Scanner input = new Scanner(System.in);
     //String IP;
     boolean lobby = false;
-    int intConnect = 1;
+    int intConnect = 1; // denne int leder til forskellige seneraier 1 er join, 2 er ready fasen, 3 er hvis den failer at connecte og 4 starter spillet.
 
 
     public void conection() {
 
         try {
 
-            // Create a socket to connect to the server
-            //Socket connectToServer = new Socket("localhost", 6969);
-            //Socket connectToServer = new Socket("192.168.43.26", 7000);
-            if (intConnect == 1){
+
+            while (intConnect == 1){ //connecter til serveren
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
-                String IP = input.nextLine();
-                Socket connectToServer = new Socket(IP, 6969);
-                if (connectToServer.isConnected()){
-                    testvariable += 10;
-                    System.out.println(testvariable);
-                    connect=true;
+                String IP = input.nextLine(); //vi inputter ip mm
+                Socket connectToServer = new Socket(IP, 6969); // vi connecter
+                if (connectToServer.isConnected()){ //checker om den er connectet
+                    intConnect = 2; //går videre til ready fasen
+                }
+                else{
+                    intConnect =3; //går videre til ikke connect fasen
                 }
 
                 // Create an input stream to receive data from the server
                 DataInputStream isFromServer = new DataInputStream(connectToServer.getInputStream());
                 // Create an output stream to send data to the server
                 DataOutputStream usToServer = new DataOutputStream(connectToServer.getOutputStream());
-                System.out.println(testvariable);
 
-
-
-                if(testvariable == 20){
+                if(intConnect == 2){
                     System.out.println("i am nr. 2");
 
                     System.out.println("det er dumt");
 
                 }
-                else{
-                    intConnect = 3;
-                }
 
-
-                if (intConnect == 2){
-                    System.out.println("i am nr. 2");
+                if (intConnect == 3){
+                    System.out.println("we didn't find your server.");
+                    intConnect = 1;
                 }
                 }
 
