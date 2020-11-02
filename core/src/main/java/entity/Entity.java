@@ -2,6 +2,7 @@ package main.java.entity;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,17 +13,16 @@ import main.java.Main;
 public abstract class Entity {
     protected SpriteBatch batch;
     protected TextureAtlas atlas;
+    protected Sprite sprite;
     protected Rectangle collisionBox;
     protected Vector2 position;
 
     protected float xPosition, yPosition;
 
-    protected double maxSpeed, acceleration, deacceleration;
-
     public Entity(SpriteBatch c_batch, TextureAtlas c_atlas) {
         batch = c_batch;
         atlas = c_atlas;
-        collisionBox = new Rectangle(xPosition, yPosition, 0, 0);
+        this.collisionBox = new Rectangle();
     }
 
     public abstract void update(float deltaTime);
@@ -49,7 +49,7 @@ public abstract class Entity {
         this.yPosition = yPosition;
     }
 
-    protected void setSize(float xSize, float ySize) {
+    protected void setCollisionSize(float xSize, float ySize) {
         collisionBox.width = xSize;
         collisionBox.height = ySize;
     }

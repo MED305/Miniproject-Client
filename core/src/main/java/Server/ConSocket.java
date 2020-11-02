@@ -3,6 +3,7 @@ package main.java.Server;
 import java.io.*;
 import java.net.DatagramPacket;
 import java.net.Socket;
+
 import java.util.Scanner;
 import main.java.Main;
 import main.java.entity.*;
@@ -20,10 +21,10 @@ public class ConSocket{
     ObjectInputStream isFromServer;
     PlayerActor player;
 
+
     public void connection() {
 
         try {
-
 
 
                 System.out.println("Connect to IP here");
@@ -41,17 +42,6 @@ public class ConSocket{
 
                 isFromServer = new ObjectInputStream(connectToServer.getInputStream());
                 // Create an output stream to send data to the server
-
-<<<<<<< Updated upstream
-                                try {
-                                    Scanner scanner = null;
-                                    String input = scanner.nextLine();
-                                    if (input.equals("ready")) {
-                                        System.out.println("Game starting");
-                                      //  The game starts here! --> vent til alle klar
-                                        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-=======
->>>>>>> Stashed changes
 
 
                 if(connect = true){
@@ -104,6 +94,7 @@ public class ConSocket{
            /* Socket connectToServer = new Socket(IP, 6969);
 
 
+
             // Create an input stream to receive data from the server
             ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
@@ -115,6 +106,7 @@ public class ConSocket{
             } else {
                 System.out.println("you are not connected");
             }*/
+
 
          catch (
                 IOException ex) {
@@ -128,6 +120,7 @@ public class ConSocket{
     }
 
 
+
   /*  public void serverSender(){
 try{
         usToServer.writeObject(player);
@@ -139,6 +132,7 @@ try{
     public void serverReciever(){
     }*/
     }
+
 
 
 

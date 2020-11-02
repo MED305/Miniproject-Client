@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import main.java.entity.*;
-import main.java.Server.ConSocket;
 import space.earlygrey.shapedrawer.ShapeDrawer;
+import main.java.Server.ConSocket;
 
 import java.util.ArrayList;
 
@@ -17,16 +20,19 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private SpriteBatch batch;
+    private TextureAtlas atlas;
+    private PlayerActor player;
+    private PickUp pickup;
+    private Enemy enemy;
+    private PickUpSpawn puspawner;
+    private EnemyFactory spawner;
+    private ConSocket con;
+    private ShapeDrawer shapeDrawer;
 
-    ShapeDrawer collisionDrawer;
-    SpriteBatch batch;
-    TextureAtlas atlas;
-    PlayerActor player;
-    PickUp pickup;
-    Enemy enemy;
-    EnemySpawn spawner;
-
-    float deltaTime;
+    private float deltaTime;
 
     @Override
     public void create() {
@@ -35,13 +41,15 @@ public class Main extends ApplicationAdapter {
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
         batch = new SpriteBatch();
+        map = new TmxMapLoader().load("textures/Maps/MAP.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
         atlas = new TextureAtlas("texture_atlas.atlas");
-        collisionDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
-        entities.add(player = new PlayerActor(atlas.findRegion("player/DudeGuy"), batch, atlas));
-        entities.add(enemy = new Enemy(atlas.findRegion("zombie/zombie"), batch, atlas));
-        entities.add(pickup = new PickUp(atlas.findRegion("pickup"), batch, atlas));
-        entities.add(spawner = new EnemySpawn(batch, atlas, 400, 400));
-
+        entities.add(player = new PlayerActor(batch, atlas));
+        entities.add(enemy = new Enemy(batch, atlas));
+        entities.add(pickup = new PickUp(batch, atlas));
+        entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
+        entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
+        shapeDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
     }
 
     @Override
@@ -53,12 +61,14 @@ public class Main extends ApplicationAdapter {
         Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        renderer.render();
+
         batch.begin();
 
         for (Entity entity : entities) {
             entity.update(deltaTime);
-            collisionDrawer.rectangle(entity.getCollisionBox());
             entity.collision(entities);
+            shapeDrawer.rectangle(entity.getCollisionBox());
         }
 
         for (Entity entity : garbage) {
@@ -66,10 +76,13 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-        //con.update();
+        // con.update();
         batch.end();
         spawner.newWave();
+
        // con.serverSender();
+        puspawner.newPickUp();
+
     }
 
     @Override
@@ -77,7 +90,5 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
+
 }
-
-
-
