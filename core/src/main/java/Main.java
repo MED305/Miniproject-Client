@@ -70,7 +70,7 @@ public class Main extends ApplicationAdapter {
         //con.update();
         batch.end();
         spawner.newWave();
-        con.serverUpdate();
+        con.serverSender();
     }
 
     @Override

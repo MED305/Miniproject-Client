@@ -1,6 +1,7 @@
 package main.java.Server;
 
 import java.io.*;
+import java.net.DatagramPacket;
 import java.net.Socket;
 import java.util.Scanner;
 import main.java.Main;
@@ -116,13 +117,16 @@ public class ConSocket{
     }
 
 
-    public void serverUpdate(){
+    public void serverSender(){
 try{
-        usToServer.writeFloat((float) 1.3);
-        //usToServer.writeFloat(player.PAFloatY);
+        usToServer.writeObject(player);
 } catch (IOException e) {
     e.printStackTrace();
 }
+    }
+
+    public void serverReciever(){
+    }
     }
 }
 
