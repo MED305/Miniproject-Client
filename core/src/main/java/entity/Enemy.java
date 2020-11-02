@@ -11,8 +11,8 @@ import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
 
 public class Enemy extends Entity {
-    Sprite sprite;
-    PlayerActor target;
+    private PlayerActor target;
+    private float speed;
 
     public Enemy(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
@@ -31,7 +31,7 @@ public class Enemy extends Entity {
     }
 
     private void move(float deltaTime) {
-        float speed = 50;
+        speed = 50;
 
         Vector2 movement = new Vector2(target.position).sub(this.position);
         movement.nor().scl(speed).scl(deltaTime);

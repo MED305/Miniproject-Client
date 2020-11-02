@@ -19,20 +19,19 @@ public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
-    TiledMap map;
+    private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private SpriteBatch batch;
+    private TextureAtlas atlas;
+    private PlayerActor player;
+    private PickUp pickup;
+    private Enemy enemy;
+    private PickUpSpawn puspawner;
+    private EnemyFactory spawner;
+    private ConSocket con;
+    private ShapeDrawer shapeDrawer;
 
-    SpriteBatch batch;
-    TextureAtlas atlas;
-    PlayerActor player;
-    PickUp pickup;
-    Enemy enemy;
-    PickUpSpawn puspawner;
-    EnemyFactory spawner;
-    ConSocket con;
-    ShapeDrawer shapeDrawer;
-
-    float deltaTime;
+    private float deltaTime;
 
     @Override
     public void create() {

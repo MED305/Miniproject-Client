@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Guest extends Entity {
 
-    protected Sprite sprite;
-
     public Guest(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
         sprite = c_atlas.createSprite("guest/guest1");
