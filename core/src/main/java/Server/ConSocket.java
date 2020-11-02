@@ -14,9 +14,11 @@ public class ConSocket{
     //String IP;
     boolean lobby = false;
     int intConnect = 1; // denne int leder til forskellige seneraier 1 er join, 2 er ready fasen, 3 er hvis den failer at connecte og 4 starter spillet.
+    ObjectOutputStream usToServer;
+    ObjectInputStream isFromServer;
+    PlayerActor player;
 
-
-    public void conection() {
+    public void connection() {
 
         try {
 
@@ -34,9 +36,11 @@ public class ConSocket{
                 }
 
                 // Create an input stream to receive data from the server
-                DataInputStream isFromServer = new DataInputStream(connectToServer.getInputStream());
+
+                isFromServer = new ObjectInputStream(connectToServer.getInputStream());
                 // Create an output stream to send data to the server
-                DataOutputStream usToServer = new DataOutputStream(connectToServer.getOutputStream());
+
+                usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
 
                 if(intConnect == 2){
                     System.out.println("You are connected");
@@ -108,51 +112,18 @@ public class ConSocket{
             System.exit(-1);
         }
     }
-        /*public void update(){
-        while (connect = true){
-            System.out.println(PlayerActor.netFloatX);
-            }*/
+
+
+    public void serverUpdate(){
+try{
+        usToServer.writeFloat((float) 1.3);
+        //usToServer.writeFloat(player.PAFloatY);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+    }
 }
 
-
-
-
-/* ------------
-boolean connect;
-
-            if (intConnect == 1, connect = false){
-                    System.out.println("Connect to IP here");
-                    System.out.println("If you are running server locally write: localhost");
-                    String IP = input.nextLine();
-                        Socket connectToServer = new Socket(IP, 6969); --> needs to turn connect true or false
-                        if (connectToServer.isConnected())
-                        Sytem.out.println("i am connected");
-                        // Create an input stream to receive data from the server
-                        ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
-                        // Create an output stream to send data to the server
-                        ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-                        System.out.println("You are not connected");
-
-                        if (connect = true){
-                        intconnect == 2
-                        }
-                        else{
-                        intconnect == 3
-                        }
-
-                    }
-
-            if (intConnect ==2) {
-                System.out.println("You are connected to a lobby, type ready to begin.");
-
-
-            }
-
-            if (intConnect == 3) {
-            System.out.println("failed to find server");
-            intconnect = 1;
-            }
- */
 
 
 

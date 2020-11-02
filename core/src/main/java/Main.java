@@ -77,17 +77,6 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         atlas.dispose();
     }
-
-    /*public void sendPosition(){
-        try{
-
-            usToServer.writeFloat(player.netFloatX);
-            usToServer.writeFloat(player.netFloatY);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 }
 
 

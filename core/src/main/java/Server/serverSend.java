@@ -3,11 +3,17 @@ package main.java.Server;
 import main.java.Server.*;
 import main.java.entity.*;
 import main.java.Main;
+import java.net.Socket;
+import java.io.*;
 
-public class serverSend {
+import java.io.Serializable;
 
-    public void serverUpdate(){
-        PlayerActor.PAFloatX;
 
-    }
+
+public class serverSend implements Serializable {
+    ConSocket usToServer;
+
+
+
+
 }
