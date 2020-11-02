@@ -6,6 +6,10 @@ import java.net.Socket;
 import java.util.Scanner;
 import main.java.Main;
 import main.java.entity.*;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+
 
 
 public class ConSocket{
@@ -24,7 +28,7 @@ public class ConSocket{
         try {
 
 
-            /*while (intConnect == 1){ //connecter til serveren
+           /* while (intConnect == 1){ //connecter til serveren
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
@@ -47,30 +51,28 @@ public class ConSocket{
                     System.out.println("You are connected");
                     System.out.println("Write 'ready' to start the game");
 
+                                try {
+                                    Scanner scanner = null;
+                                    String input = scanner.nextLine();
+                                    if (input.equals("ready")) {
+                                        System.out.println("Game starting");
+                                      //  The game starts here!
+                                        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-                        boolean connect = true;
-                        while (connect) {
-                            try {
-                                Scanner scan = null;
-                                String message = scan.nextLine();
-                                DataOutputStream output = null;
-                                output.writeUTF(message);
-                                // output.flush();
+                                        config.title = "Game Window";
+                                        config.resizable = true;
+                                        config.width = 800;
+                                        config.height = 800;
+                                        new LwjglApplication(new Main(), config);
 
-                                if (message.equalsIgnoreCase("ready")) {
-                                    System.out.println("Game starting");
-                                    connect = false;
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println(e);
+                                    System.out.println("Error, enter correct input");
+
                                 }
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
-                        }
-
-
-
-                    
-
 
 
                 }
@@ -79,9 +81,12 @@ public class ConSocket{
                     System.out.println("We didn't find your server.");
                     intConnect = 1;
                 }
+
+
                 }*/
             Socket connectToServer = new Socket("localhost", 6969);
             usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+
 
 
 
@@ -114,6 +119,9 @@ public class ConSocket{
             System.out.println("you are not connected");
             System.exit(-1);
         }
+
+
+
     }
 
 
