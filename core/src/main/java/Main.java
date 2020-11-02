@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    ConSocket con = new ConSocket ();
+    ConSocket con = new ConSocket();
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 

@@ -56,7 +56,7 @@ public class ConSocket{
                                     String input = scanner.nextLine();
                                     if (input.equals("ready")) {
                                         System.out.println("Game starting");
-                                      //  The game starts here!
+                                      //  The game starts here! --> vent til alle klar
                                         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
                                         config.title = "Game Window";

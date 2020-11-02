@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.sun.tools.javac.comp.Todo;
 import main.java.Main;
+import main.java.Server.ConSocket;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -14,7 +15,8 @@ import java.util.Scanner;
 public class DesktopLauncher {
 
 	public static void main (String[] arg) {
-
+		ConSocket con = new ConSocket();
+		con.connection();
 
 
 
