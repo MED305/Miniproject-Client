@@ -5,12 +5,14 @@ import java.net.DatagramPacket;
 import java.net.Socket;
 
 import java.util.Scanner;
+import java.util.Vector;
+
+import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
 import main.java.entity.*;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-
-
+import org.lwjgl.Sys;
 
 
 public class ConSocket{
@@ -22,6 +24,7 @@ public class ConSocket{
     PlayerActor player;
 
 
+
     public void connection() {
 
         try {
@@ -30,7 +33,7 @@ public class ConSocket{
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
-                Socket connectToServer = new Socket(IP, 6969); // vi connecter
+                Socket connectToServer = new Socket(IP, 7070); // vi connecter
                 if (connectToServer.isConnected()){ //checker om den er connectet
                     connect = true; //går videre til ready fasen
                 }
@@ -42,6 +45,7 @@ public class ConSocket{
 
                 isFromServer = new ObjectInputStream(connectToServer.getInputStream());
                 // Create an output stream to send data to the server
+
 
 
                 if(connect = true){
@@ -61,6 +65,11 @@ public class ConSocket{
                                 config.height = 800;
 
                                 new LwjglApplication(new Main(), config);
+
+                                while (connect == true) {
+                                    serverSender();
+                                }
+
                             }
                     } catch (Exception e) {
                         System.out.println(e);
@@ -119,19 +128,20 @@ public class ConSocket{
 
     }
 
-
-
     public void serverSender(){
-try{
-        usToServer.writeFloat(player.getxPosition());
-} catch (IOException e) {
-    e.printStackTrace();
-}
+        try{
+        usToServer.writeFloat(123);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void serverReciever(){
+    public void serverReciever() throws IOException {
+        float number = isFromServer.readFloat();
+        System.out.println(number);
     }
-    }
+}
 
 
 

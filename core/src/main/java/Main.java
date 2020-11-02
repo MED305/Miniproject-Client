@@ -29,7 +29,6 @@ public class Main extends ApplicationAdapter {
     private Enemy enemy;
     private PickUpSpawn puspawner;
     private EnemyFactory spawner;
-    private ConSocket con;
     private ShapeDrawer shapeDrawer;
 
     private float deltaTime;
