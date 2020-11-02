@@ -13,14 +13,10 @@ import main.java.Main;
 import main.java.graphics.Score;
 
 public class PlayerActor extends Entity {
-
+/*
     public float PAFloatX;
     public float PAFloatY;
-    TextureAtlas.AtlasRegion sprite;
-
-
-    Sprite sprite;
-    PickUpSpawn puspawner;
+    */
 
     int hp = 100;
     Score score;
@@ -113,10 +109,10 @@ public class PlayerActor extends Entity {
     }
 
 
-    public void vecortofloat (Vector2 position){
+    /*public void vecortofloat (Vector2 position){
         PAFloatX = this.position.x;
         PAFloatY = this.position.y;
-    }
+    }*/
 
     /*public void floatToVector (float netfloatx, float netfloaty){
         netpos = new Vector2(netfloatx, netfloaty);

@@ -121,16 +121,16 @@ public class ConSocket{
 
 
 
-  /*  public void serverSender(){
+    public void serverSender(){
 try{
-        usToServer.writeObject(player);
+        usToServer.writeFloat(player.getxPosition());
 } catch (IOException e) {
     e.printStackTrace();
 }
     }
 
     public void serverReciever(){
-    }*/
+    }
     }
 
 
