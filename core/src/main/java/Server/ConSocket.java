@@ -5,6 +5,10 @@ import java.net.Socket;
 import java.util.Scanner;
 import main.java.Main;
 import main.java.entity.*;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+
 
 
 public class ConSocket{
@@ -42,25 +46,32 @@ public class ConSocket{
                     System.out.println("You are connected");
                     System.out.println("Write 'ready' to start the game");
 
+                                try {
+                                    Scanner scanner = null;
+                                    String input = scanner.nextLine();
+                                    if (input.equals("ready")) {
+                                        System.out.println("Game starting");
+                                      //  The game starts here!
+                                        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-                        boolean connect = true;
-                        while (connect) {
-                            try {
-                                Scanner scan = null;
-                                String message = scan.nextLine();
-                                DataOutputStream output = null;
-                                output.writeUTF(message);
-                                // output.flush();
+                                        config.title = "Game Window";
+                                        config.resizable = true;
+                                        config.width = 800;
+                                        config.height = 800;
+                                        new LwjglApplication(new Main(), config);
 
-                                if (message.equalsIgnoreCase("ready")) {
-                                    System.out.println("Game starting");
-                                    connect = false;
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println(e);
+                                    System.out.println("Error, enter correct input");
+
                                 }
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
-                        }
+
+
+
+
 
 
 
@@ -74,7 +85,7 @@ public class ConSocket{
                     System.out.println("We didn't find your server.");
                     intConnect = 1;
                 }
-                }
+
 
 
 
@@ -107,6 +118,9 @@ public class ConSocket{
             System.out.println("you are not connected");
             System.exit(-1);
         }
+
+
+
     }
         /*public void update(){
         while (connect = true){
