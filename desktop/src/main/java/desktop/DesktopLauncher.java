@@ -1,5 +1,6 @@
 package main.java.desktop;
 
+
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
@@ -14,10 +15,16 @@ import java.util.Scanner;
 
 public class DesktopLauncher {
 
+<<<<<<< Updated upstream
 	public static void main (String[] arg) {
 		ConSocket con = new ConSocket();
 		con.connection();
+=======
+>>>>>>> Stashed changes
 
+	public static void main (String[] arg) {
+		ConSocket con = new ConSocket();
+		con.connection();
 
 
 		// Pack all textures
