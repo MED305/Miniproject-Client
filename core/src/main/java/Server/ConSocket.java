@@ -23,7 +23,7 @@ public class ConSocket{
         try {
 
 
-            while (intConnect == 1){ //connecter til serveren
+            /*while (intConnect == 1){ //connecter til serveren
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
@@ -78,7 +78,9 @@ public class ConSocket{
                     System.out.println("We didn't find your server.");
                     intConnect = 1;
                 }
-                }
+                }*/
+            Socket connectToServer = new Socket("localhost", 6969);
+            usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
 
 
 

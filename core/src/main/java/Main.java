@@ -31,7 +31,7 @@ public class Main extends ApplicationAdapter {
     @Override
     public void create() {
 
-        con.conection();
+        con.connection();
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -70,6 +70,7 @@ public class Main extends ApplicationAdapter {
         //con.update();
         batch.end();
         spawner.newWave();
+        con.serverUpdate();
     }
 
     @Override
