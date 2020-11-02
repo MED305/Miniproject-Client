@@ -23,7 +23,7 @@ public class Bullet extends Entity {
         this.player = c_player;
 
         this.sprite = c_atlas.createSprite("bullet/bullet");
-        this.sprite.scale(5);
+        this.sprite.scale(1.2f);
 
         this.position = new Vector2(player.position.x, player.position.y);
 
@@ -32,7 +32,7 @@ public class Bullet extends Entity {
         this.movement = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY()).sub(this.position);
         this.movement.nor().scl(SPEED).scl(deltaTime);
 
-        this.sprite.rotate(this.position.angle(this.movement));
+        this.sprite.rotate(movement.angle());
     }
 
     public void update(float deltaTime) {
