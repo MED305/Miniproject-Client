@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
+    ConSocket con = new ConSocket();
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
@@ -35,8 +36,7 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        con = new ConSocket();
-        con.conection();
+
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -79,7 +79,10 @@ public class Main extends ApplicationAdapter {
         // con.update();
         batch.end();
         spawner.newWave();
+
+       // con.serverSender();
         puspawner.newPickUp();
+
     }
 
     @Override
@@ -88,12 +91,4 @@ public class Main extends ApplicationAdapter {
         atlas.dispose();
     }
 
-    /*
-     * public void sendPosition(){ try{
-     * 
-     * usToServer.writeFloat(player.netFloatX);
-     * usToServer.writeFloat(player.netFloatY);
-     * 
-     * } catch (Exception e) { e.printStackTrace(); } }
-     */
 }

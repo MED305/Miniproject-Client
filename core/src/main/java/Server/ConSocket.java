@@ -1,39 +1,140 @@
 package main.java.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.*;
+import java.net.DatagramPacket;
 import java.net.Socket;
-import java.io.IOException;
 
-public class ConSocket {
-    boolean connect = true;
-    // Scanner input = new Scanner(System.in);
+import java.util.Scanner;
+import main.java.Main;
+import main.java.entity.*;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-    public void conection() {
+
+
+
+public class ConSocket{
+    boolean connect = false;
+    Scanner input = new Scanner(System.in);
+    //String IP;
+    ObjectOutputStream usToServer;
+    ObjectInputStream isFromServer;
+    PlayerActor player;
+
+
+    public void connection() {
 
         try {
-            // Create a socket to connect to the server
-            java.net.Socket connectToServer = new Socket("localhost", 6969);
-            // Socket connectToServer = new Socket("192.168.43.26", 7000);
+
+
+                System.out.println("Connect to IP here");
+                System.out.println("If you are running server locally write: localhost");
+                String IP = input.nextLine(); //vi inputter ip mm
+                Socket connectToServer = new Socket(IP, 6969); // vi connecter
+                if (connectToServer.isConnected()){ //checker om den er connectet
+                    connect = true; //går videre til ready fasen
+                }
+
+                // Create an input stream to receive data from the server
+
+
+                usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+
+                isFromServer = new ObjectInputStream(connectToServer.getInputStream());
+                // Create an output stream to send data to the server
+
+
+                if(connect = true){
+                    try {
+                        System.out.println("You are connected");
+                        System.out.println("Write 'ready' to start the game");
+                        Scanner scanner = new Scanner(System.in);
+                        String input = scanner.nextLine();
+                            if (input.equals("ready")) {
+                                System.out.println("Game starting");
+                                //  The game starts here!
+                                LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+                                config.title = "Game Window";
+                                config.resizable = true;
+                                config.width = 800;
+                                config.height = 800;
+
+                                new LwjglApplication(new Main(), config);
+                            }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("Error, enter correct input");
+
+                    }
+
+                }
+
+
+                if (connect = false){
+                    System.out.println("We didn't find your server.");
+                }
+
+
+                }
+          //  Socket connectToServer = new Socket("localhost", 6969);
+           // usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+
+
+
+
+
+          /*
+
+          if(connect = false){
+                System.exit(-1);
+
+            }*/
+
+           /* Socket connectToServer = new Socket(IP, 6969);
+
+
 
             // Create an input stream to receive data from the server
-            DataInputStream isFromServer = new DataInputStream(connectToServer.getInputStream());
+            ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
             // Create an output stream to send data to the server
-            DataOutputStream usToServer = new DataOutputStream(connectToServer.getOutputStream());
+            ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());*/
 
-            if (connect = true) {
+            /*if (connect = true) {
                 System.out.println("you are connected");
             } else {
                 System.out.println("you are not connected");
-            }
+            }*/
 
-        } catch (IOException ex) {
+
+         catch (
+                IOException ex) {
             System.out.println(ex.toString() + '\n');
+            System.out.println("you are not connected");
+            System.exit(-1);
         }
+
+
+
     }
-    /*
-     * public void update(){ while (connect = true){
-     * System.out.println(PlayerActor.netFloatX); }
-     */
+
+
+
+  /*  public void serverSender(){
+try{
+        usToServer.writeObject(player);
+} catch (IOException e) {
+    e.printStackTrace();
 }
+    }
+
+    public void serverReciever(){
+    }*/
+    }
+
+
+
+
+
+
