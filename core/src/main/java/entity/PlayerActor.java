@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -16,10 +15,7 @@ public class PlayerActor extends Entity {
 
     public float PAFloatX;
     public float PAFloatY;
-    TextureAtlas.AtlasRegion sprite;
 
-
-    Sprite sprite;
     PickUpSpawn puspawner;
 
     int hp = 100;
