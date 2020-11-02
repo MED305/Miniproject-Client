@@ -42,7 +42,7 @@ public class ConSocket{
                     System.out.println("You are connected");
                     System.out.println("Write 'ready' to start the game");
 
-                    Thread write = new Thread(() -> {
+
                         boolean connect = true;
                         while (connect) {
                             try {
@@ -62,8 +62,8 @@ public class ConSocket{
                             }
                         }
 
-                    });
-                    write.start();
+
+
                     
 
 
