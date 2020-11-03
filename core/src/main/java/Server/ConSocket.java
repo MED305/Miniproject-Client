@@ -33,7 +33,7 @@ public class ConSocket{
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
-                Socket connectToServer = new Socket(IP, 7070); // vi connecter
+                Socket connectToServer = new Socket(IP, 6969); // vi connecter
                 if (connectToServer.isConnected()){ //checker om den er connectet
                     connect = true; //går videre til ready fasen
                 }
@@ -68,6 +68,7 @@ public class ConSocket{
 
                                 while (connect == true) {
                                     serverSender();
+                                    serverReceiver();
                                 }
 
                             }
@@ -130,16 +131,25 @@ public class ConSocket{
 
     public void serverSender(){
         try{
-        usToServer.writeFloat(123);
+
+            usToServer = new ObjectOutputStream(new FileOutputStream("test.txt"));
+            usToServer.writeObject(player);
+            usToServer.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void serverReciever() throws IOException {
-        float number = isFromServer.readFloat();
-        System.out.println(number);
+    public void serverReceiver() throws IOException {
+        try {
+            isFromServer = new ObjectInputStream(new FileInputStream("test.txt"));
+            PlayerActor pl = (PlayerActor)isFromServer.readObject();
+            System.out.println(pl);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
