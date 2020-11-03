@@ -75,13 +75,11 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-        con.serverSender();
+
         batch.end();
         spawner.newWave();
 
-
         puspawner.newPickUp();
-
     }
 
     @Override

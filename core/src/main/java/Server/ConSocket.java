@@ -22,8 +22,7 @@ public class ConSocket{
     ObjectOutputStream usToServer;
     ObjectInputStream isFromServer;
     PlayerActor player;
-
-
+    FileOutputStream file;
 
     public void connection() {
 
@@ -33,16 +32,13 @@ public class ConSocket{
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
-                Socket connectToServer = new Socket(IP, 6869); // vi connecter
+                Socket connectToServer = new Socket(IP, 6969); // vi connecter
                 if (connectToServer.isConnected()){ //checker om den er connectet
                     connect = true; //går videre til ready fasen
                 }
 
                 // Create an input stream to receive data from the server
-
-
                 usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-
                 isFromServer = new ObjectInputStream(connectToServer.getInputStream());
                 // Create an output stream to send data to the server
 
@@ -66,11 +62,10 @@ public class ConSocket{
 
                                 new LwjglApplication(new Main(), config);
 
-                                /*while (connect == true) {
-                                    serverSender();
-                                    serverReceiver();
-                                }*/
 
+                                while (connect == true) {
+                                    serverSender();
+                                }
                             }
                     } catch (Exception e) {
                         System.out.println(e);
@@ -130,12 +125,9 @@ public class ConSocket{
     }
 
     public void serverSender(){
-        try{
-
-            usToServer = new ObjectOutputStream(new FileOutputStream("test.txt"));
-            usToServer.writeObject(player);
+        try {
+            usToServer.writeInt(2);
             usToServer.flush();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,7 +141,6 @@ public class ConSocket{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }
 
