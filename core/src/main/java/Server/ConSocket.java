@@ -33,7 +33,7 @@ public class ConSocket{
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
-                Socket connectToServer = new Socket(IP, 6969); // vi connecter
+                Socket connectToServer = new Socket(IP, 6869); // vi connecter
                 if (connectToServer.isConnected()){ //checker om den er connectet
                     connect = true; //går videre til ready fasen
                 }
@@ -66,10 +66,10 @@ public class ConSocket{
 
                                 new LwjglApplication(new Main(), config);
 
-                                while (connect == true) {
+                                /*while (connect == true) {
                                     serverSender();
                                     serverReceiver();
-                                }
+                                }*/
 
                             }
                     } catch (Exception e) {
