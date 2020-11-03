@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    ConSocket con = new ConSocket();
+    ConSocket con;
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
@@ -35,7 +35,9 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-
+        System.out.println("hej");
+        con = new ConSocket();
+        con.connection();
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -75,7 +77,7 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-
+        con.serverSender(player);
         batch.end();
         spawner.newWave();
 

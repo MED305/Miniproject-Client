@@ -19,10 +19,30 @@ public class ConSocket{
     boolean connect = false;
     Scanner input = new Scanner(System.in);
     //String IP;
+    Socket connectToServer;
     ObjectOutputStream usToServer;
     ObjectInputStream isFromServer;
-    PlayerActor player;
     FileOutputStream file;
+
+
+    public void start() {
+        System.out.println("Write 'ready' to start the game");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        if (input.equals("ready")) {
+            System.out.println("Game starting");
+            //  The game starts here!
+            LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+            config.title = "Game Window";
+            config.resizable = true;
+            config.width = 800;
+            config.height = 800;
+
+            new LwjglApplication(new Main(), config);
+        }
+    }
+
 
     public void connection() {
 
@@ -32,56 +52,36 @@ public class ConSocket{
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
-                Socket connectToServer = new Socket(IP, 6969); // vi connecter
+                connectToServer = new Socket(IP, 6969); // vi connecter
                 if (connectToServer.isConnected()){ //checker om den er connectet
                     connect = true; //går videre til ready fasen
                 }
 
-                // Create an input stream to receive data from the server
-                usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-                isFromServer = new ObjectInputStream(connectToServer.getInputStream());
-                // Create an output stream to send data to the server
-
-
-
-                if(connect = true){
+                if(connect = true) {
                     try {
                         System.out.println("You are connected");
-                        System.out.println("Write 'ready' to start the game");
-                        Scanner scanner = new Scanner(System.in);
-                        String input = scanner.nextLine();
-                            if (input.equals("ready")) {
-                                System.out.println("Game starting");
-                                //  The game starts here!
-                                LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-                                config.title = "Game Window";
-                                config.resizable = true;
-                                config.width = 800;
-                                config.height = 800;
-
-                                new LwjglApplication(new Main(), config);
+                        usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+                        isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
 
-                                while (connect == true) {
+                                /*while (connect == true) {
                                     serverSender();
-                                }
-                            }
+                                }*/
+
                     } catch (Exception e) {
                         System.out.println(e);
                         System.out.println("Error, enter correct input");
 
                     }
 
-                }
+
+                    if (connect = false) {
+                        System.out.println("We didn't find your server.");
+                    }
 
 
-                if (connect = false){
-                    System.out.println("We didn't find your server.");
-                }
-
-
-                }
+                }                }
           //  Socket connectToServer = new Socket("localhost", 6969);
            // usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
 
@@ -121,10 +121,10 @@ public class ConSocket{
 
     }
 
-    public void serverSender(){
+    public void serverSender(PlayerActor player){
+
         try {
             usToServer.writeFloat(player.getxPosition());
-            usToServer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

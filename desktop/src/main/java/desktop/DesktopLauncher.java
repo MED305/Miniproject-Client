@@ -18,7 +18,8 @@ public class DesktopLauncher {
 
 	public static void main (String[] arg) {
 		ConSocket con = new ConSocket();
-		con.connection();
+		con.start();
+
 
 
 
