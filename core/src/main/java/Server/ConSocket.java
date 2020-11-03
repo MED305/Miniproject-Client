@@ -61,7 +61,7 @@ public class ConSocket{
                         System.out.println("You are connected");
 
                         usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-                        player1 = new ObjectInputStream(connectToServer.getInputStream());
+
 
                     } catch (Exception e) {
                         System.out.println(e);
@@ -91,7 +91,15 @@ public class ConSocket{
         }
     }
 
-    public void serverReceiver() {
+    public void serverReceiver1() {
+        if (player1 == null){
+            try {
+                player1 = new ObjectInputStream(connectToServer.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             if (player1.available() < 0){
              try {
@@ -100,6 +108,28 @@ public class ConSocket{
                  } catch (IOException ioException) {
                      ioException.printStackTrace();
                  }}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void serverReceiver2() {
+        if (player2 == null){
+            try {
+                player2 = new ObjectInputStream(connectToServer.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            if (player2.available() < 0){
+                try {
+                    float test = player2.readFloat();
+                    System.out.println(test);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }}
         } catch (IOException e) {
             e.printStackTrace();
         }
