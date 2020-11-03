@@ -17,8 +17,7 @@ public class DesktopLauncher {
 
 
 	public static void main (String[] arg) {
-		ConSocket con = new ConSocket();
-		con.start();
+
 
 
 
@@ -33,6 +32,8 @@ public class DesktopLauncher {
 		settings.edgePadding = true;
 		TexturePacker.process(settings, "textures", "./", "texture_atlas");
 
+		ConSocket con = new ConSocket();
+		con.start();
 		
 	}
 }

@@ -12,6 +12,7 @@ import main.java.entity.*;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 import main.java.Server.ConSocket;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
@@ -35,7 +36,6 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        System.out.println("hej");
         con = new ConSocket();
         con.connection();
         entities = new ArrayList<>();
@@ -78,6 +78,7 @@ public class Main extends ApplicationAdapter {
 
         player.detectInput(deltaTime);
         con.serverSender(player);
+        con.serverReceiver();
         batch.end();
         spawner.newWave();
 

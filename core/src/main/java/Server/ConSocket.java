@@ -21,8 +21,10 @@ public class ConSocket{
     //String IP;
     Socket connectToServer;
     ObjectOutputStream usToServer;
-    ObjectInputStream isFromServer;
+    ObjectInputStream player1;
+    ObjectInputStream player2;
     FileOutputStream file;
+
 
     public void start() {
         System.out.println("Write 'ready' to start the game");
@@ -59,7 +61,7 @@ public class ConSocket{
                         System.out.println("You are connected");
 
                         usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-                        isFromServer = new ObjectInputStream(connectToServer.getInputStream());
+                        player1 = new ObjectInputStream(connectToServer.getInputStream());
 
                     } catch (Exception e) {
                         System.out.println(e);
@@ -89,14 +91,19 @@ public class ConSocket{
         }
     }
 
-    public void serverReceiver() throws IOException {
+    public void serverReceiver() {
         try {
-            isFromServer = new ObjectInputStream(new FileInputStream("test.txt"));
-            PlayerActor pl = (PlayerActor)isFromServer.readObject();
-            System.out.println(pl);
-        } catch (ClassNotFoundException e) {
+            if (player1.available() < 0){
+             try {
+                     float test = player1.readFloat();
+                 System.out.println(test);
+                 } catch (IOException ioException) {
+                     ioException.printStackTrace();
+                 }}
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
 
