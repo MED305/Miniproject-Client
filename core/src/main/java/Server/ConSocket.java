@@ -24,7 +24,6 @@ public class ConSocket{
     ObjectInputStream isFromServer;
     FileOutputStream file;
 
-
     public void start() {
         System.out.println("Write 'ready' to start the game");
         Scanner scanner = new Scanner(System.in);
@@ -47,8 +46,6 @@ public class ConSocket{
     public void connection() {
 
         try {
-
-
                 System.out.println("Connect to IP here");
                 System.out.println("If you are running server locally write: localhost");
                 String IP = input.nextLine(); //vi inputter ip mm
@@ -64,51 +61,16 @@ public class ConSocket{
                         usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
                         isFromServer = new ObjectInputStream(connectToServer.getInputStream());
 
-
-                                /*while (connect == true) {
-                                    serverSender();
-                                }*/
-
                     } catch (Exception e) {
                         System.out.println(e);
                         System.out.println("Error, enter correct input");
-
                     }
-
-
                     if (connect = false) {
                         System.out.println("We didn't find your server.");
                     }
 
 
                 }                }
-          //  Socket connectToServer = new Socket("localhost", 6969);
-           // usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-
-
-          /*
-
-          if(connect = false){
-                System.exit(-1);
-
-            }*/
-
-           /* Socket connectToServer = new Socket(IP, 6969);
-
-
-
-            // Create an input stream to receive data from the server
-            ObjectInputStream isFromServer = new ObjectInputStream(connectToServer.getInputStream());
-
-            // Create an output stream to send data to the server
-            ObjectOutputStream usToServer = new ObjectOutputStream(connectToServer.getOutputStream());*/
-
-            /*if (connect = true) {
-                System.out.println("you are connected");
-            } else {
-                System.out.println("you are not connected");
-            }*/
-
 
          catch (
                 IOException ex) {
@@ -116,9 +78,6 @@ public class ConSocket{
             System.out.println("you are not connected");
             System.exit(-1);
         }
-
-
-
     }
 
     public void serverSender(PlayerActor player){
