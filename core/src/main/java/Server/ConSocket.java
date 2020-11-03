@@ -86,9 +86,6 @@ public class ConSocket{
            // usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
 
 
-
-
-
           /*
 
           if(connect = false){
@@ -126,7 +123,7 @@ public class ConSocket{
 
     public void serverSender(){
         try {
-            usToServer.writeInt(2);
+            usToServer.writeFloat(player.getxPosition());
             usToServer.flush();
         } catch (IOException e) {
             e.printStackTrace();
