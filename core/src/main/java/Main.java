@@ -82,6 +82,8 @@ public class Main extends ApplicationAdapter {
         con.serverSender(player);
         con.serverReceiver1();
 
+        guest1.setPosition(con.g1Pos);
+
         batch.end();
         spawner.newWave();
 

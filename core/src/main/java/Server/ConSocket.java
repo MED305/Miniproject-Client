@@ -25,7 +25,9 @@ public class ConSocket {
     ObjectInputStream player2;
     //receiver 1 = guest 1
 
-    public Vector2 g1Pos = new Vector2();
+
+
+    public Vector2 g1Pos;
 
 
 
@@ -50,6 +52,8 @@ public class ConSocket {
 
     public void connection() {
 
+        g1Pos = new Vector2();
+
         try {
             System.out.println("Connect to IP here");
             System.out.println("If you are running server locally write: localhost");
@@ -73,8 +77,6 @@ public class ConSocket {
                 if (connect = false) {
                     System.out.println("We didn't find your server.");
                 }
-
-
             }
         } catch (
                 IOException ex) {
@@ -109,9 +111,8 @@ public class ConSocket {
             if (player1.available() > 0) {
 
                 g1Pos.x = player1.readFloat();
-                System.out.println(g1XPos);
                 g1Pos.y = player1.readFloat();
-                System.out.println(g1YPos);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,9 +144,3 @@ public class ConSocket {
 
     }
 }
-
-
-
-
-
-
