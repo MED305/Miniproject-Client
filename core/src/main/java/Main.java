@@ -31,6 +31,7 @@ public class Main extends ApplicationAdapter {
     private PickUpSpawn puspawner;
     private EnemyFactory spawner;
     private ShapeDrawer shapeDrawer;
+    private Guest guest1;
 
     private float deltaTime;
 
@@ -50,6 +51,7 @@ public class Main extends ApplicationAdapter {
         entities.add(pickup = new PickUp(batch, atlas));
         entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
         entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
+        entities.add(guest1 = new Guest(batch, atlas));
         shapeDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
     }
 

@@ -18,13 +18,15 @@ import org.lwjgl.Sys;
 public class ConSocket {
     boolean connect = false;
     Scanner input = new Scanner(System.in);
-    //String IP;
+    int port = 6969;
     Socket connectToServer;
     ObjectOutputStream usToServer;
     ObjectInputStream player1;
     ObjectInputStream player2;
-    FileOutputStream file;
-    public Guest guest1;
+    //receiver 1 = guest 1
+
+    public Vector2 g1Pos = new Vector2();
+
 
 
     public void start() {
@@ -52,7 +54,7 @@ public class ConSocket {
             System.out.println("Connect to IP here");
             System.out.println("If you are running server locally write: localhost");
             String IP = input.nextLine(); //vi inputter ip mm
-            connectToServer = new Socket(IP, 6969); // vi connecter
+            connectToServer = new Socket(IP, port); // vi connecter
             if (connectToServer.isConnected()) { //checker om den er connectet
                 connect = true; //går videre til ready fasen
             }
@@ -86,6 +88,7 @@ public class ConSocket {
 
         try {
             usToServer.writeFloat(player.getxPosition());
+            usToServer.writeFloat(player.getyPosition());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,9 +108,10 @@ public class ConSocket {
         try {
             if (player1.available() > 0) {
 
-                float test = player1.readFloat();
-                System.out.println(test);
-
+                g1Pos.x = player1.readFloat();
+                System.out.println(g1XPos);
+                g1Pos.y = player1.readFloat();
+                System.out.println(g1YPos);
             }
         } catch (IOException e) {
             e.printStackTrace();
