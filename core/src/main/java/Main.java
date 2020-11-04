@@ -81,7 +81,7 @@ public class Main extends ApplicationAdapter {
         player.detectInput(deltaTime);
         con.serverSender(player);
         con.serverReceiver1();
-
+        con.serverReceiver2();
         guest1.setPosition(con.g1Pos);
 
         batch.end();

@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import java.util.Scanner;
 import java.util.Vector;
+import java.lang.Integer;
 
 import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
@@ -28,6 +29,7 @@ public class ConSocket {
 
 
     public Vector2 g1Pos;
+    public int playerinfo;
 
 
 
@@ -91,12 +93,13 @@ public class ConSocket {
         try {
             usToServer.writeFloat(player.getxPosition());
             usToServer.writeFloat(player.getyPosition());
+            //usToServer.writeFloat(bullet);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void serverReceiver1() {
+    public void serverReceiver() {
 
         if (player1 == null) {
             try {
@@ -110,17 +113,20 @@ public class ConSocket {
         try {
             if (player1.available() > 0) {
 
-                g1Pos.x = player1.readFloat();
-                g1Pos.y = player1.readFloat();
-
+                String[] info =  player1.readUTF().split("-");
+                playerinfo = Integer.parseInt(info[0]);
+                if (playerinfo == 1)
+                g1Pos.x = Float.parseFloat(info[1]);
+                g1Pos.y = Float.parseFloat(info[2]);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public void serverReceiver2() {
+   /* public void serverReceiver2() {
         if (player2 == null) {
             try {
                 player2 = new ObjectInputStream(connectToServer.getInputStream());
@@ -141,6 +147,6 @@ public class ConSocket {
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
 
-    }
 }
