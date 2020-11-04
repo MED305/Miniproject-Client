@@ -34,7 +34,7 @@ public abstract class Entity {
     public abstract void collision(ArrayList<Entity> others);
 
     public float getxPosition() {
-        return xPosition;
+        return this.position.x;
     }
 
     public void setxPosition(float xPosition) {
@@ -42,7 +42,7 @@ public abstract class Entity {
     }
 
     public float getyPosition() {
-        return yPosition;
+        return this.position.y;
     }
 
     public void setyPosition(float yPosition) {

@@ -12,11 +12,12 @@ import main.java.entity.*;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 import main.java.Server.ConSocket;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     static public ArrayList<Entity> entities;
-    ConSocket con = new ConSocket();
+    ConSocket con;
     static public ArrayList<Entity> garbage;
     static public ArrayList<Enemy> enemies;
 
@@ -29,14 +30,15 @@ public class Main extends ApplicationAdapter {
     private Enemy enemy;
     private PickUpSpawn puspawner;
     private EnemyFactory spawner;
-    private ConSocket con;
     private ShapeDrawer shapeDrawer;
+    private Guest guest1;
 
     private float deltaTime;
 
     @Override
     public void create() {
-
+        con = new ConSocket();
+        con.connection();
         entities = new ArrayList<>();
         garbage = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -49,6 +51,7 @@ public class Main extends ApplicationAdapter {
         entities.add(pickup = new PickUp(batch, atlas));
         entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
         entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
+        entities.add(guest1 = new Guest(batch, atlas));
         shapeDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
     }
 
@@ -76,13 +79,15 @@ public class Main extends ApplicationAdapter {
         }
 
         player.detectInput(deltaTime);
-        // con.update();
+        con.serverSender(player);
+        con.serverReceiver1();
+
+        guest1.setPosition(con.g1Pos);
+
         batch.end();
         spawner.newWave();
 
-       // con.serverSender();
         puspawner.newPickUp();
-
     }
 
     @Override
