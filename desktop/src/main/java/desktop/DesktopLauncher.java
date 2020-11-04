@@ -15,12 +15,7 @@ import java.util.Scanner;
 
 public class DesktopLauncher {
 
-
 	public static void main (String[] arg) {
-
-
-
-
 
 		// TODO: REMOVE THIS BEFORE RELEASE
 		TexturePacker.Settings settings = new TexturePacker.Settings();
@@ -34,6 +29,5 @@ public class DesktopLauncher {
 
 		ConSocket con = new ConSocket();
 		con.start();
-		
 	}
 }
