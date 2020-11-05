@@ -34,10 +34,10 @@ public class ConSocket {
 
 
     public void start() {
-        System.out.println("Write 'ready' to start the game");
+        System.out.println("Write 'start' to start the game");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        if (input.equals("ready")) {
+        if (input.equals("start")) {
             System.out.println("Game starting");
             //  The game starts here!
             LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
@@ -64,31 +64,36 @@ public class ConSocket {
             if (connectToServer.isConnected()) { //checker om den er connectet
                 connect = true; //går videre til ready fasen
             }
+            System.out.println("If all players are connected then write 'ready' to launch game");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            if (input.equals("ready")) {
+                if (connect = true) {
+                    try {
+                        System.out.println("You are connected");
 
-            if (connect = true) {
-                try {
-                    System.out.println("You are connected");
+                        usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
+                        inputStream = new ObjectInputStream(connectToServer.getInputStream());
 
-                    usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-                    inputStream = new ObjectInputStream(connectToServer.getInputStream());
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("Error, enter correct input");
 
-                } catch (Exception e) {
-                    System.out.println(e);
-                    System.out.println("Error, enter correct input");
 
+                    }
+
+                    if (connect = false) {
+                        System.out.println("We didn't find your server.");
+                    }
 
                 }
-                if (connect = false) {
-                    System.out.println("We didn't find your server.");
-                }
-
             }
-        } catch (
-                IOException ex) {
-            System.out.println(ex.toString() + '\n');
-            System.out.println("you are not connected");
-            System.exit(-1);
-        }
+            } catch(
+                    IOException ex){
+                System.out.println(ex.toString() + '\n');
+                System.out.println("you are not connected");
+                System.exit(-1);
+            }
 
     }
     public void serverSender(PlayerActor player) {
@@ -133,27 +138,4 @@ public class ConSocket {
     }
 
     }
-
-   /* public void serverReceiver2() {
-        if (player2 == null) {
-            try {
-                player2 = new ObjectInputStream(connectToServer.getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            if (player2.available() < 0) {
-                try {
-                    float test = player2.readFloat();
-                    System.out.println(test);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
 
