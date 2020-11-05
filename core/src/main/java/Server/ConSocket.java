@@ -1,5 +1,6 @@
 package main.java.Server;
 
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.DatagramPacket;
 import java.net.Socket;
@@ -7,6 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.Vector;
 import java.lang.Integer;
+import java.awt.event.KeyListener;
 
 import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
@@ -66,9 +68,14 @@ public class ConSocket {
             if (connectToServer.isConnected()) { //checker om den er connectet
                 connect = true; //går videre til ready fasen
             }
-            System.out.println("If all players are connected then write 'ready' to launch game");
+            System.out.println("If all players are connected then write 'ready' to close game write 'close' button");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+            if (input.equals("close")){
+                System.out.println("game closing");
+                System.exit(0);
+
+            }
             if (input.equals("ready")) {
                 if (connect = true) {
                     try {
