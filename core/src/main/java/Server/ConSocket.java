@@ -55,6 +55,8 @@ public class ConSocket {
     public void connection() {
 
         g1Pos = new Vector2();
+        g2Pos = new Vector2();
+        g3Pos = new Vector2();
 
         try {
             System.out.println("Connect to IP here");
@@ -106,6 +108,7 @@ public class ConSocket {
 
         try {
             if (inputStream.available() > 0) {
+
                 String[] info = inputStream.readUTF().split("-");
                 playerinfo = Integer.parseInt(info[0]);
                 switch (playerinfo){

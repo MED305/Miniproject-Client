@@ -31,7 +31,7 @@ public class Main extends ApplicationAdapter {
     private PickUpSpawn puspawner;
     private EnemyFactory spawner;
     private ShapeDrawer shapeDrawer;
-    private Guest guest1;
+    private Guest guest1, guest2, guest3;
 
     private float deltaTime;
 
@@ -52,6 +52,8 @@ public class Main extends ApplicationAdapter {
         entities.add(spawner = new EnemyFactory(batch, atlas, 400, 400));
         entities.add(puspawner = new PickUpSpawn(batch, atlas, 400, 400));
         entities.add(guest1 = new Guest(batch, atlas));
+        entities.add(guest2 = new Guest(batch, atlas));
+        entities.add(guest3 = new Guest(batch, atlas));
         shapeDrawer = new ShapeDrawer(batch, atlas.findRegion("singleWhitePixel"));
     }
 
@@ -82,6 +84,8 @@ public class Main extends ApplicationAdapter {
         con.serverSender(player);
         con.serverReceiver();
         guest1.setPosition(con.g1Pos);
+        guest2.setPosition(con.g2Pos);
+        guest3.setPosition(con.g3Pos);
 
         batch.end();
         spawner.newWave();
