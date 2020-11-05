@@ -22,13 +22,13 @@ public class ConSocket {
     int port = 6969;
     Socket connectToServer;
     ObjectOutputStream usToServer;
-    ObjectInputStream player1;
-    ObjectInputStream player2;
-    //receiver 1 = guest 1
+    ObjectInputStream inputStream;
 
 
 
     public Vector2 g1Pos;
+    public Vector2 g2Pos;
+    public Vector2 g3Pos;
     public int playerinfo;
 
 
@@ -70,15 +70,18 @@ public class ConSocket {
                     System.out.println("You are connected");
 
                     usToServer = new ObjectOutputStream(connectToServer.getOutputStream());
-
+                    inputStream = new ObjectInputStream(connectToServer.getInputStream());
 
                 } catch (Exception e) {
                     System.out.println(e);
                     System.out.println("Error, enter correct input");
+
+
                 }
                 if (connect = false) {
                     System.out.println("We didn't find your server.");
                 }
+
             }
         } catch (
                 IOException ex) {
@@ -86,8 +89,8 @@ public class ConSocket {
             System.out.println("you are not connected");
             System.exit(-1);
         }
-    }
 
+    }
     public void serverSender(PlayerActor player) {
 
         try {
@@ -101,28 +104,33 @@ public class ConSocket {
 
     public void serverReceiver() {
 
-        if (player1 == null) {
-            try {
-                player1 = new ObjectInputStream(connectToServer.getInputStream());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
         try {
-            if (player1.available() > 0) {
-
-                String[] info =  player1.readUTF().split("-");
+            if (inputStream.available() > 0) {
+                String[] info = inputStream.readUTF().split("-");
                 playerinfo = Integer.parseInt(info[0]);
-                if (playerinfo == 1)
-                g1Pos.x = Float.parseFloat(info[1]);
-                g1Pos.y = Float.parseFloat(info[2]);
-            }
+                switch (playerinfo){
+                    case 0:
+                        g1Pos.x = Float.parseFloat(info[1]);
+                        g1Pos.y = Float.parseFloat(info[2]);
+                        break;
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                    case 1:
+                        g2Pos.x = Float.parseFloat(info[1]);
+                        g2Pos.y = Float.parseFloat(info[2]);
+                        break;
+
+                    case 2:
+                        g3Pos.x = Float.parseFloat(info[1]);
+                        g3Pos.y = Float.parseFloat(info[2]);
+                        break;
+                }
+
+            }
+            } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
+
+    }
 
     }
 
@@ -149,4 +157,3 @@ public class ConSocket {
         }
 */
 
-}
