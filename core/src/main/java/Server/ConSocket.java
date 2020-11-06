@@ -1,14 +1,12 @@
 package main.java.Server;
 
-import java.awt.event.KeyEvent;
+
 import java.io.*;
-import java.net.DatagramPacket;
 import java.net.Socket;
 
 import java.util.Scanner;
-import java.util.Vector;
+
 import java.lang.Integer;
-import java.awt.event.KeyListener;
 
 import com.badlogic.gdx.math.Vector2;
 import main.java.Main;
@@ -27,7 +25,7 @@ public class ConSocket {
     ObjectInputStream inputStream;
 
 
-
+    //position vectors for the guests.
     public Vector2 g1Pos;
     public Vector2 g2Pos;
     public Vector2 g3Pos;
@@ -35,7 +33,7 @@ public class ConSocket {
 
 
 
-    public void start() {
+    public void start() { //lobby
         System.out.println("Write 'start' to start the game");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -56,6 +54,7 @@ public class ConSocket {
 
     public void connection() {
 
+        //position vectors for the guests.
         g1Pos = new Vector2();
         g2Pos = new Vector2();
         g3Pos = new Vector2();
@@ -105,6 +104,8 @@ public class ConSocket {
             }
 
     }
+
+    //the method for which we send our position
     public void serverSender(PlayerActor player) {
 
         try {
@@ -115,14 +116,17 @@ public class ConSocket {
             e.printStackTrace();
         }
     }
-
+    //server reciever is the method of which we receive our data
     public void serverReceiver() {
 
         try {
+            //to ensure the program is not caught on waiting for data, so we check whether there is any incoming data.
             if (inputStream.available() > 0) {
-
+                //We receive data as a String, and convert that to an array of Strings.
                 String[] info = inputStream.readUTF().split("-");
+                //player info could also be thought as a user name, this i the place of the connection in an array on the server side
                 playerinfo = Integer.parseInt(info[0]);
+
                 switch (playerinfo){
                     case 0:
                         g1Pos.x = Float.parseFloat(info[1]);

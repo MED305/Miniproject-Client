@@ -13,10 +13,6 @@ import main.java.graphics.Score;
 
 public class PlayerActor extends Entity {
 
-    public float PAFloatX;
-    public float PAFloatY;
-
-
     PickUpSpawn puspawner;
     int hp = 100;
     Score score;
@@ -27,7 +23,6 @@ public class PlayerActor extends Entity {
         score = new Score();
         this.position = new Vector2(100.0f, 100.0f);
         this.setCollisionSize(sprite.getWidth(), sprite.getHeight());
-        vecortofloat(position);
     }
 
     @Override
@@ -105,19 +100,6 @@ public class PlayerActor extends Entity {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             shoot(deltaTime);
         }
-
         move(movement, speed, deltaTime);
     }
-
-
-    public void vecortofloat (Vector2 position){
-        PAFloatX = this.position.x;
-        PAFloatY = this.position.y;
-    }
-
-
-    /*public void floatToVector (float netfloatx, float netfloaty){
-        netpos = new Vector2(netfloatx, netfloaty);
-    }*/
-
 }
