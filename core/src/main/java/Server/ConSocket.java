@@ -43,7 +43,6 @@ public class ConSocket {
             config.height = 800;
 
             new LwjglApplication(new Main(), config);
-            scanner.close();
         }
     }
 
@@ -56,7 +55,11 @@ public class ConSocket {
         try {
             System.out.println("Connect to IP here");
             System.out.println("If you are running server locally write: localhost");
-            String IP = input.nextLine(); // vi inputter ip mm
+
+            Scanner scanner = new Scanner(System.in);
+
+            String IP = scanner.nextLine(); // vi inputter ip mm
+
             connectToServer = new Socket(IP, port); // vi connecter
 
             if (connectToServer.isConnected()) { // checker om den er connectet
@@ -64,13 +67,11 @@ public class ConSocket {
             }
 
             System.out.println("If all players are connected then write 'ready' - To close game write 'close'");
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
 
             if (input.equals("close")) {
                 System.out.println("game closing");
                 System.exit(0);
-
             }
 
             if (input.equals("ready")) {

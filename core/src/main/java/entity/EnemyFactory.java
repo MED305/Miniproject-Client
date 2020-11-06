@@ -11,7 +11,7 @@ import main.java.Main;
 public class EnemyFactory extends Entity {
 
     private float spawnTimer = 10;
-    private int enemiesToSpawn = 2;
+    private int enemiesToSpawn;
 
     public EnemyFactory(SpriteBatch c_batch, TextureAtlas c_atlas, float c_x, float c_y) {
         super(c_batch, c_atlas);
@@ -26,14 +26,12 @@ public class EnemyFactory extends Entity {
 
     @Override
     public void update(float deltaTime) {
-        enemiesToSpawn = 0;
-
         if (Main.enemies.size() == 0) {
             spawnTimer += deltaTime;
         }
 
         if (spawnTimer > 5) {
-            enemiesToSpawn += 0;
+            enemiesToSpawn += 1;
             spawnTimer = 0;
         }
     }
