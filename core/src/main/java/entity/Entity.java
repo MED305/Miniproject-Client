@@ -17,8 +17,6 @@ public abstract class Entity {
     protected Rectangle collisionBox;
     protected Vector2 position;
 
-    protected float xPosition, yPosition;
-
     public Entity(SpriteBatch c_batch, TextureAtlas c_atlas) {
         batch = c_batch;
         atlas = c_atlas;
@@ -27,26 +25,18 @@ public abstract class Entity {
 
     public abstract void update(float deltaTime);
 
+    public abstract void collision(ArrayList<Entity> others);
+
     public void remove() {
         Main.garbage.add(this);
     }
 
-    public abstract void collision(ArrayList<Entity> others);
-
-    public float getxPosition() {
+    public float getXPosition() {
         return this.position.x;
     }
 
-    public void setxPosition(float xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public float getyPosition() {
+    public float getYPosition() {
         return this.position.y;
-    }
-
-    public void setyPosition(float yPosition) {
-        this.yPosition = yPosition;
     }
 
     protected void setCollisionSize(float xSize, float ySize) {

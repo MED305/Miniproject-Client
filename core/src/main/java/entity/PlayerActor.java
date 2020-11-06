@@ -13,9 +13,9 @@ import main.java.graphics.Score;
 
 public class PlayerActor extends Entity {
 
-    PickUpSpawn puspawner;
-    int hp = 100;
     Score score;
+    private int hp = 100;
+    final float SPEED = 100;
 
     public PlayerActor(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
@@ -56,6 +56,7 @@ public class PlayerActor extends Entity {
                 }
             }
         }
+
         for (Entity entity : others) {
             if (entity.getCollisionBox() != null & entity instanceof PickUp
                     & this.getCollisionBox().overlaps(entity.getCollisionBox())) {
@@ -66,13 +67,11 @@ public class PlayerActor extends Entity {
                     hp = 100;
                 }
                 System.out.println("Dit HP er: " + hp);
-
             }
         }
     }
 
     public void detectInput(float deltaTime) {
-        float speed = 100;
         Vector2 movement = new Vector2();
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
@@ -100,6 +99,6 @@ public class PlayerActor extends Entity {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             shoot(deltaTime);
         }
-        move(movement, speed, deltaTime);
+        move(movement, SPEED, deltaTime);
     }
 }

@@ -1,15 +1,11 @@
 package main.java.entity;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 public class PickUp extends Entity {
-
-    int pickup = 0;
-    float x, y;
 
     public PickUp(SpriteBatch c_batch, TextureAtlas c_atlas) {
         super(c_batch, c_atlas);
@@ -23,10 +19,6 @@ public class PickUp extends Entity {
         this.collisionBox.set(this.position.x, this.position.y, this.collisionBox.width, this.collisionBox.height);
         sprite.setCenter(this.position.x + sprite.getWidth() / 2, this.position.y + sprite.getHeight() / 2);
         sprite.draw(batch);
-
-        if (y > Gdx.graphics.getHeight()) {
-            this.remove();
-        }
     }
 
     @Override

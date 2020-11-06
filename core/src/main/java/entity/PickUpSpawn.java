@@ -10,8 +10,8 @@ import main.java.Main;
 
 public class PickUpSpawn extends Entity {
 
-    private float spawnTimer = 0;
-    private int pickUpsToSpawn = 0;
+    private float spawnTimer = 20;
+    private int pickUpsToSpawn = 1;
 
     public PickUpSpawn(SpriteBatch c_batch, TextureAtlas c_atlas, float c_x, float c_y) {
         super(c_batch, c_atlas);
@@ -40,6 +40,5 @@ public class PickUpSpawn extends Entity {
 
     @Override
     public void collision(ArrayList<Entity> others) {
-
     }
 }
