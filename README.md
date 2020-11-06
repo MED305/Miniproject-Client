@@ -6,6 +6,8 @@ This is the repository client part of **Group 305's** miniprojecte hand in. If y
 README
 To start the game, launch server repository at : https://github.com/MED305/Miniproject-Server when that is launched, then launch the game from IDE. Then follow the instructions printed in the terminal.
 
+(Latency can be up towards 30-40 seconds)
+
 Controls:
 For movement use the WASD keys on your keyboard to move in each respective direction.
 W = up
