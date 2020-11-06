@@ -18,7 +18,6 @@ public class PlayerActor extends Entity {
 
 
     PickUpSpawn puspawner;
-
     int hp = 100;
     Score score;
 
